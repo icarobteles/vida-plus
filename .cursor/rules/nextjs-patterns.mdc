@@ -1,0 +1,14 @@
+---
+description: Padrões Next.js App Router do MedFlow
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# Next.js
+
+- App Router; layouts em `app/`; lógica em `lib/`.
+- Forms: Server Actions + Zod; APIs REST em `app/api/`.
+- Validar sessão e perfil no servidor (Route Handlers e Server Actions).
+- shadcn em `components/ui/`; não duplicar primitivos.
+- Nunca expor `AUTH_SECRET` ou secrets no client.
+- Middleware protege rotas do dashboard por role.

@@ -1,0 +1,12 @@
+---
+description: Testes Vitest e Playwright
+globs: "**/{e2e,__tests__}/**/*"
+alwaysApply: false
+---
+
+# Testes
+
+- **Vitest**: validadores Zod, CPF, schemas em `lib/`.
+- **Playwright**: fluxos e2e em `e2e/`; specs pelo comportamento (`login-paciente.spec.ts`).
+- Config: `webServer` apontando para `npm run dev`.
+- Credenciais demo nos testes: paciente@vida.plus / 123456.

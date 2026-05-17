@@ -1,0 +1,37 @@
+---
+description: Conventional Commits em português com foco no efeito funcional
+alwaysApply: true
+---
+
+# Git e commits
+
+- Branch `main` apenas; commit após cada incremento funcional testável.
+- Formato: [Conventional Commits](https://www.conventionalcommits.org/) em português.
+- Mensagem = resposta a **"Se eu aplicar este commit, ele vai..."** — descrever o efeito para usuário/sistema, não o diff.
+- Usar escopo quando ajudar: `auth`, `patients`, `appointments`, `ui`, `db`, `e2e`, `docs`, `rules`.
+
+## Tipos
+
+- `feat` — nova funcionalidade visível ou de API
+- `fix` — correção de comportamento
+- `chore` — tooling/deps sem mudar comportamento
+- `docs` — README, relatório
+- `test` — testes sem feat nova
+- `refactor` / `style` — sem mudança de comportamento
+
+## Exemplos
+
+```
+feat(auth): adicionar proteção de acesso às telas privadas
+feat(patients): permitir cadastro de pacientes com validação de CPF
+test(e2e): garantir fluxo de login do paciente até o dashboard
+```
+
+## Evitar
+
+```
+feat: criar PatientForm.tsx e atualizar schema.prisma
+chore: adicionar shadcn button
+```
+
+- Nunca `--no-verify` nem `git commit --amend` salvo pedido explícito do usuário.
