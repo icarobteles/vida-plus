@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMIN
+  PATIENT
+  PROFESSIONAL
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CANCELLED
+  COMPLETED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role
+  createdAt    DateTime @default(now())
+
+  patientProfile      Patient?
+  appointmentsAsPro   Appointment[] @relation("ProfessionalAppointments")
+  medicalRecords      MedicalRecord[]
+}
+
+model Patient {
+  id        String   @id @default(cuid())
+  name      String
+  cpf       String   @unique
+  birthDate DateTime
+  phone     String?
+  email     String?
+  userId    String?  @unique
+  user      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  appointments   Appointment[]
+  medicalRecords MedicalRecord[]
+}
+
+model Appointment {
+  id             String            @id @default(cuid())
+  patientId      String
+  patient        Patient           @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  professionalId String
+  professional   User              @relation("ProfessionalAppointments", fields: [professionalId], references: [id])
+  scheduledAt    DateTime
+  status         AppointmentStatus @default(SCHEDULED)
+  notes          String?
+  createdAt      DateTime          @default(now())
+}
+
+model MedicalRecord {
+  id             String   @id @default(cuid())
+  patientId      String
+  patient        Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  professionalId String
+  professional   User     @relation(fields: [professionalId], references: [id])
+  recordedAt     DateTime @default(now())
+  type           String
+  description    String
+}
