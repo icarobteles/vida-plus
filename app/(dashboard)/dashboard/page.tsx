@@ -7,10 +7,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default async function DashboardPage() {
   const user = await requireSession();
 
-  const [patientsCount, appointmentsCount, recordsCount] = await Promise.all([
-    prisma.patient.count(),
-    prisma.appointment.count({ where: { status: "SCHEDULED" } }),
-    prisma.medicalRecord.count(),
+  const patientsCount = await prisma.patient.count();
+
+  const appointmentWhere =
+    user.role === "PATIENT" && user.patientId
+      ? { status: "SCHEDULED" as const, patientId: user.patientId }
+      : user.role === "PROFESSIONAL"
+        ? { status: "SCHEDULED" as const, professionalId: user.id }
+        : { status: "SCHEDULED" as const };
+
+  const recordsWhere =
+    user.role === "PATIENT" && user.patientId
+      ? { patientId: user.patientId }
+      : user.role === "PROFESSIONAL"
+        ? { professionalId: user.id }
+        : {};
+
+  const [appointmentsCount, recordsCount] = await Promise.all([
+    prisma.appointment.count({ where: appointmentWhere }),
+    prisma.medicalRecord.count({ where: recordsWhere }),
   ]);
 
   const cards = {
@@ -25,7 +40,7 @@ export default async function DashboardPage() {
       { title: "Telemedicina", value: "—", href: "/telemedicina", icon: Video },
     ],
     PROFESSIONAL: [
-      { title: "Consultas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
+      { title: "Minhas consultas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
       { title: "Prontuários", value: recordsCount, href: "/prontuario", icon: FileText },
       { title: "Telemedicina", value: "—", href: "/telemedicina", icon: Video },
     ],
