@@ -20,7 +20,7 @@ const statusMap = {
 };
 
 export default async function AgendamentosPage() {
-  const user = await requireRole(["PATIENT", "ADMIN"]);
+  const user = await requireRole(["PATIENT", "ADMIN", "PROFESSIONAL"]);
 
   const professionals = await prisma.user.findMany({
     where: { role: "PROFESSIONAL" },
@@ -35,10 +35,14 @@ export default async function AgendamentosPage() {
         })
       : undefined;
 
+  const canSchedule = user.role === "PATIENT" || user.role === "ADMIN";
+
   const where =
     user.role === "PATIENT" && user.patientId
       ? { patientId: user.patientId }
-      : {};
+      : user.role === "PROFESSIONAL"
+        ? { professionalId: user.id }
+        : {};
 
   const appointments = await prisma.appointment.findMany({
     where,
@@ -55,14 +59,18 @@ export default async function AgendamentosPage() {
         <div>
           <h1 className="text-2xl font-bold">Agendamentos</h1>
           <p className="text-muted-foreground">
-            Agende ou cancele consultas online
+            {canSchedule
+              ? "Agende ou cancele consultas online"
+              : "Suas consultas agendadas"}
           </p>
         </div>
-        <AppointmentFormDialog
-          professionals={professionals}
-          patients={patients}
-          defaultPatientId={user.patientId}
-        />
+        {canSchedule && (
+          <AppointmentFormDialog
+            professionals={professionals}
+            patients={patients}
+            defaultPatientId={user.patientId}
+          />
+        )}
       </div>
       <Card>
         <CardHeader>
@@ -94,7 +102,7 @@ export default async function AgendamentosPage() {
                       <Badge variant={st.variant}>{st.label}</Badge>
                     </TableCell>
                     <TableCell>
-                      {a.status === "SCHEDULED" && (
+                      {a.status === "SCHEDULED" && canSchedule && (
                         <CancelAppointmentButton id={a.id} />
                       )}
                     </TableCell>
