@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
-import { authConfig } from "@/lib/auth.config";
-import { NextResponse } from "next/server";
 import type { Role } from "@/app/generated/prisma/client";
+import { authConfig } from "@/lib/auth.config";
+import NextAuth from "next-auth";
+import { NextResponse } from "next/server";
 
 const { auth } = NextAuth(authConfig);
 

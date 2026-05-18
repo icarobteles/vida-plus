@@ -1,7 +1,12 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { createAppointment } from "@/app/actions/appointments";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -9,22 +14,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "sonner";
 
 type Professional = { id: string; name: string };
 type PatientOption = { id: string; name: string };
+
+const selectClass =
+  "flex h-9 w-full cursor-pointer items-center rounded-lg border border-input bg-transparent px-3 py-2 text-sm transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30";
 
 export function AppointmentFormDialog({
   professionals,
@@ -38,16 +34,11 @@ export function AppointmentFormDialog({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [professionalId, setProfessionalId] = useState("");
-  const [patientId, setPatientId] = useState(defaultPatientId ?? "");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    const fd = new FormData(e.currentTarget);
-    fd.set("professionalId", professionalId);
-    if (patientId) fd.set("patientId", patientId);
-    const result = await createAppointment(fd);
+    const result = await createAppointment(new FormData(e.currentTarget));
     setLoading(false);
     if (result.error) {
       toast.error(result.error);
@@ -70,46 +61,46 @@ export function AppointmentFormDialog({
         <form onSubmit={onSubmit} className="space-y-4">
           {patients && (
             <div className="space-y-2">
-              <Label>Paciente</Label>
-              <Select
-                value={patientId}
-                onValueChange={(v) => setPatientId(v ?? "")}
+              <Label htmlFor="patientId">Paciente</Label>
+              <select
+                id="patientId"
+                name="patientId"
                 required
+                defaultValue={defaultPatientId ?? ""}
+                className={selectClass}
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent>
-                  {patients.map((p) => (
-                    <SelectItem key={p.id} value={p.id} label={p.name}>
-                      {p.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                <option value="" disabled>
+                  Selecione o paciente
+                </option>
+                {patients.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
-          {defaultPatientId && (
+          {defaultPatientId && !patients && (
             <input type="hidden" name="patientId" value={defaultPatientId} />
           )}
           <div className="space-y-2">
-            <Label>Profissional</Label>
-            <Select
-              value={professionalId}
-              onValueChange={(v) => setProfessionalId(v ?? "")}
+            <Label htmlFor="professionalId">Profissional</Label>
+            <select
+              id="professionalId"
+              name="professionalId"
               required
+              defaultValue=""
+              className={selectClass}
             >
-              <SelectTrigger>
-                <SelectValue placeholder="Selecione o médico" />
-              </SelectTrigger>
-              <SelectContent>
-                {professionals.map((p) => (
-                  <SelectItem key={p.id} value={p.id} label={p.name}>
-                    {p.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              <option value="" disabled>
+                Selecione o médico
+              </option>
+              {professionals.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="space-y-2">
             <Label htmlFor="scheduledAt">Data e hora</Label>
@@ -125,11 +116,7 @@ export function AppointmentFormDialog({
             <Label htmlFor="notes">Observações</Label>
             <Textarea id="notes" name="notes" rows={2} />
           </div>
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={loading || !professionalId}
-          >
+          <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Agendando..." : "Confirmar agendamento"}
           </Button>
         </form>
