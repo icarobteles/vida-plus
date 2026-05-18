@@ -22,6 +22,7 @@ const links = [
   { href: "/prontuario", label: "Prontuário", roles: ["PATIENT", "PROFESSIONAL", "ADMIN"] as Role[] },
   { href: "/receitas", label: "Receitas", roles: ["PROFESSIONAL"] as Role[] },
   { href: "/telemedicina", label: "Telemedicina", roles: ["PATIENT", "PROFESSIONAL"] as Role[] },
+  { href: "/relatorios", label: "Relatórios", roles: ["ADMIN"] as Role[] },
 ];
 
 export function MobileNav({ role }: { role: Role }) {

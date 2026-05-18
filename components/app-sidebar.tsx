@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  BarChart3,
   Calendar,
   FileText,
   LayoutDashboard,
@@ -61,6 +62,12 @@ const links: {
     label: "Telemedicina",
     icon: Video,
     roles: ["PATIENT", "PROFESSIONAL"],
+  },
+  {
+    href: "/relatorios",
+    label: "Relatórios",
+    icon: BarChart3,
+    roles: ["ADMIN"],
   },
 ];
 
