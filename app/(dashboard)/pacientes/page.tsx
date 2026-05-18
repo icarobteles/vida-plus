@@ -1,6 +1,8 @@
 import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { PatientFormDialog } from "@/components/patient-form";
+import { EditPatientDialog } from "@/components/edit-patient-dialog";
+import { DeletePatientButton } from "@/components/delete-patient-button";
 import {
   Table,
   TableBody,
@@ -43,6 +45,7 @@ export default async function PacientesPage() {
                 <TableHead>CPF</TableHead>
                 <TableHead>Nascimento</TableHead>
                 <TableHead>Contato</TableHead>
+                <TableHead></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -54,6 +57,19 @@ export default async function PacientesPage() {
                     {new Date(p.birthDate).toLocaleDateString("pt-BR")}
                   </TableCell>
                   <TableCell>{p.phone ?? p.email ?? "—"}</TableCell>
+                  <TableCell className="flex gap-1">
+                    <EditPatientDialog
+                      patient={{
+                        id: p.id,
+                        name: p.name,
+                        cpf: p.cpf,
+                        birthDate: p.birthDate.toISOString().split("T")[0],
+                        phone: p.phone,
+                        email: p.email,
+                      }}
+                    />
+                    <DeletePatientButton id={p.id} name={p.name} />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
