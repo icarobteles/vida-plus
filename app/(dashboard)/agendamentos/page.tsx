@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { AppointmentFormDialog } from "@/components/appointment-form";
@@ -5,6 +6,7 @@ import { CancelAppointmentButton } from "@/components/cancel-appointment-button"
 import { CompleteAppointmentButton } from "@/components/complete-appointment-button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Video } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -109,6 +111,17 @@ export default async function AgendamentosPage() {
                       {a.status === "SCHEDULED" &&
                         user.role === "PROFESSIONAL" && (
                           <CompleteAppointmentButton id={a.id} />
+                        )}
+                      {a.status === "SCHEDULED" &&
+                        (user.role === "PATIENT" ||
+                          user.role === "PROFESSIONAL") && (
+                          <Link
+                            href="/telemedicina"
+                            className="inline-flex h-8 items-center gap-1 rounded-md border border-input bg-background px-3 text-xs font-medium hover:bg-muted"
+                          >
+                            <Video className="h-3 w-3" />
+                            Teleconsulta
+                          </Link>
                         )}
                     </TableCell>
                   </TableRow>
