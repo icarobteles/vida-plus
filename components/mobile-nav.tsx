@@ -17,8 +17,9 @@ import type { Role } from "@/app/generated/prisma/client";
 const links = [
   { href: "/dashboard", label: "Dashboard", roles: ["ADMIN", "PATIENT", "PROFESSIONAL"] as Role[] },
   { href: "/pacientes", label: "Pacientes", roles: ["ADMIN"] as Role[] },
-  { href: "/agendamentos", label: "Agendamentos", roles: ["PATIENT", "ADMIN"] as Role[] },
+  { href: "/agendamentos", label: "Agendamentos", roles: ["PATIENT", "ADMIN", "PROFESSIONAL"] as Role[] },
   { href: "/prontuario", label: "Prontuário", roles: ["PATIENT", "PROFESSIONAL", "ADMIN"] as Role[] },
+  { href: "/receitas", label: "Receitas", roles: ["PROFESSIONAL"] as Role[] },
   { href: "/telemedicina", label: "Telemedicina", roles: ["PATIENT", "PROFESSIONAL"] as Role[] },
 ];
 

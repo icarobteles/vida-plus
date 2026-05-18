@@ -30,6 +30,7 @@ model User {
   patientProfile      Patient?
   appointmentsAsPro   Appointment[] @relation("ProfessionalAppointments")
   medicalRecords      MedicalRecord[]
+  prescriptions       Prescription[]
 }
 
 model Patient {
@@ -45,6 +46,7 @@ model Patient {
 
   appointments   Appointment[]
   medicalRecords MedicalRecord[]
+  prescriptions  Prescription[]
 }
 
 model Appointment {
@@ -68,4 +70,16 @@ model MedicalRecord {
   recordedAt     DateTime @default(now())
   type           String
   description    String
+}
+
+model Prescription {
+  id             String   @id @default(cuid())
+  patientId      String
+  patient        Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  professionalId String
+  professional   User     @relation(fields: [professionalId], references: [id])
+  medication     String
+  dosage         String
+  instructions   String
+  createdAt      DateTime @default(now())
 }

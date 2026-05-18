@@ -35,13 +35,19 @@ const links: {
     href: "/agendamentos",
     label: "Agendamentos",
     icon: Calendar,
-    roles: ["PATIENT", "ADMIN"],
+    roles: ["PATIENT", "ADMIN", "PROFESSIONAL"],
   },
   {
     href: "/prontuario",
     label: "Prontuário",
     icon: FileText,
     roles: ["PATIENT", "PROFESSIONAL", "ADMIN"],
+  },
+  {
+    href: "/receitas",
+    label: "Receitas",
+    icon: FileText,
+    roles: ["PROFESSIONAL"],
   },
   {
     href: "/telemedicina",

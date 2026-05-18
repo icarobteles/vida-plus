@@ -39,6 +39,12 @@ export const medicalRecordSchema = z.object({
   description: z.string().min(3, "Descrição deve ter ao menos 3 caracteres"),
 });
 
+export const prescriptionSchema = z.object({
+  medication: z.string().min(1, "Medicamento é obrigatório"),
+  dosage: z.string().min(1, "Posologia é obrigatória"),
+  instructions: z.string().min(1, "Instruções são obrigatórias"),
+});
+
 export const loginSchema = z.object({
   email: z.string().email("E-mail inválido"),
   password: z.string().min(1, "Senha é obrigatória"),
