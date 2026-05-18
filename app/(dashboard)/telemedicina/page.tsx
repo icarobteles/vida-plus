@@ -1,5 +1,5 @@
-import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
+import { requireRole } from "@/lib/session";
 import { TelemedicinaClient } from "./telemedicina-client";
 
 export default async function TelemedicinaPage() {

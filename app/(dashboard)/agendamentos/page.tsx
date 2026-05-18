@@ -1,12 +1,14 @@
-import Link from "next/link";
-import { requireRole } from "@/lib/session";
-import { prisma } from "@/lib/prisma";
 import { AppointmentFormDialog } from "@/components/appointment-form";
 import { CancelAppointmentButton } from "@/components/cancel-appointment-button";
 import { CompleteAppointmentButton } from "@/components/complete-appointment-button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Video } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -15,6 +17,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { prisma } from "@/lib/prisma";
+import { requireRole } from "@/lib/session";
+import { Video } from "lucide-react";
+import Link from "next/link";
 
 const statusMap = {
   SCHEDULED: { label: "Agendada", variant: "default" as const },

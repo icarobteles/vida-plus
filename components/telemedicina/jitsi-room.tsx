@@ -1,16 +1,17 @@
 "use client";
 
-import { useRef } from "react";
-import { JitsiMeeting } from "@jitsi/react-sdk";
 import { Badge } from "@/components/ui/badge";
+import { JitsiMeeting } from "@jitsi/react-sdk";
+import { useRef } from "react";
 
 interface JitsiRoomProps {
   roomName: string;
+  displayTitle: string;
   userName: string;
   onLeave: () => void;
 }
 
-export function JitsiRoom({ roomName, userName, onLeave }: JitsiRoomProps) {
+export function JitsiRoom({ roomName, displayTitle, userName, onLeave }: JitsiRoomProps) {
   const apiRef = useRef<unknown>(null);
 
   return (
@@ -28,6 +29,7 @@ export function JitsiRoom({ roomName, userName, onLeave }: JitsiRoomProps) {
             startWithVideoMuted: false,
             prejoinPageEnabled: false,
             disableModeratorIndicator: true,
+            subject: displayTitle,
             toolbarButtons: [
               "microphone",
               "camera",

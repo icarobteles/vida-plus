@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import { Video, Shield } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,9 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -20,10 +17,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Info, Shield, Video } from "lucide-react";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const JitsiRoom = dynamic(
-  () =>
-    import("@/components/telemedicina/jitsi-room").then((m) => m.JitsiRoom),
+  () => import("@/components/telemedicina/jitsi-room").then((m) => m.JitsiRoom),
   { ssr: false },
 );
 
@@ -51,7 +50,7 @@ export function TelemedicinaClient({
   const appointment = appointments.find((a) => a.id === selectedAppointment);
 
   const roomName = appointment
-    ? `medflow-${appointment.id.slice(0, 12)}`
+    ? `VidaPlusTeleconsulta${appointment.id.replace(/[^a-zA-Z0-9]/g, "").slice(0, 8)}`
     : "";
 
   const otherPerson = appointment
@@ -83,8 +82,30 @@ export function TelemedicinaClient({
           </div>
           <Badge variant="default">Jitsi Meet</Badge>
         </div>
+        {userRole === "PROFESSIONAL" && (
+          <Alert className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/30">
+            <Info className="h-4 w-4" />
+            <AlertTitle>Você é o anfitrião</AlertTitle>
+            <AlertDescription>
+              Como profissional, você inicia a sala. Na primeira vez, o Jitsi
+              pode pedir autenticação com Google ou GitHub para criar a sala.
+              O paciente entrará automaticamente após você iniciar.
+            </AlertDescription>
+          </Alert>
+        )}
+        {userRole === "PATIENT" && (
+          <Alert className="border-blue-200 bg-blue-50 dark:border-blue-800 dark:bg-blue-950/30">
+            <Info className="h-4 w-4" />
+            <AlertTitle>Aguarde o profissional</AlertTitle>
+            <AlertDescription>
+              O profissional precisa iniciar a sala primeiro. Se a sala ainda
+              não estiver ativa, aguarde alguns instantes e tente novamente.
+            </AlertDescription>
+          </Alert>
+        )}
         <JitsiRoom
           roomName={roomName}
+          displayTitle={`Teleconsulta VidaPlus — ${otherPerson}`}
           userName={userName}
           onLeave={handleLeave}
         />
@@ -138,9 +159,9 @@ export function TelemedicinaClient({
                           userRole === "PATIENT"
                             ? appointment.professionalName
                             : appointment.patientName
-                        } — ${new Date(
-                          appointment.scheduledAt,
-                        ).toLocaleString("pt-BR")}`
+                        } — ${new Date(appointment.scheduledAt).toLocaleString(
+                          "pt-BR",
+                        )}`
                       : undefined}
                   </SelectValue>
                 </SelectTrigger>
