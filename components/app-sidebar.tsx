@@ -6,6 +6,7 @@ import {
   Calendar,
   FileText,
   LayoutDashboard,
+  Stethoscope,
   Users,
   Video,
   Activity,
@@ -29,6 +30,12 @@ const links: {
     href: "/pacientes",
     label: "Pacientes",
     icon: Users,
+    roles: ["ADMIN"],
+  },
+  {
+    href: "/profissionais",
+    label: "Profissionais",
+    icon: Stethoscope,
     roles: ["ADMIN"],
   },
   {

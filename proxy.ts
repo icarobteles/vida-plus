@@ -7,6 +7,7 @@ const { auth } = NextAuth(authConfig);
 
 const roleRoutes: Record<string, Role[]> = {
   "/pacientes": ["ADMIN"],
+  "/profissionais": ["ADMIN"],
   "/agendamentos": ["PATIENT", "ADMIN", "PROFESSIONAL"],
   "/receitas": ["PROFESSIONAL"],
   "/telemedicina": ["PATIENT", "PROFESSIONAL"],
@@ -47,5 +48,6 @@ export const config = {
     "/prontuario/:path*",
     "/telemedicina/:path*",
     "/receitas/:path*",
+    "/profissionais/:path*",
   ],
 };
