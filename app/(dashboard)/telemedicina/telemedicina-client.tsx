@@ -88,8 +88,8 @@ export function TelemedicinaClient({
             <AlertTitle>Você é o anfitrião</AlertTitle>
             <AlertDescription>
               Como profissional, você inicia a sala. Na primeira vez, o Jitsi
-              pode pedir autenticação com Google ou GitHub para criar a sala.
-              O paciente entrará automaticamente após você iniciar.
+              pode pedir autenticação com Google ou GitHub para criar a sala. O
+              paciente entrará automaticamente após você iniciar.
             </AlertDescription>
           </Alert>
         )}

@@ -11,7 +11,12 @@ interface JitsiRoomProps {
   onLeave: () => void;
 }
 
-export function JitsiRoom({ roomName, displayTitle, userName, onLeave }: JitsiRoomProps) {
+export function JitsiRoom({
+  roomName,
+  displayTitle,
+  userName,
+  onLeave,
+}: JitsiRoomProps) {
   const apiRef = useRef<unknown>(null);
 
   return (
@@ -53,6 +58,9 @@ export function JitsiRoom({ roomName, displayTitle, userName, onLeave }: JitsiRo
           }}
           onApiReady={(api) => {
             apiRef.current = api;
+            api.addListener("videoConferenceLeft", () => {
+              onLeave();
+            });
           }}
           onReadyToClose={onLeave}
         />
