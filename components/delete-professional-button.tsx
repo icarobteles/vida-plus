@@ -1,11 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { deleteProfessional } from "@/app/actions/professionals";
-import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/confirm-dialog";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function DeleteProfessionalButton({
   id,
@@ -33,13 +34,15 @@ export function DeleteProfessionalButton({
       confirmLabel="Excluir profissional"
       onConfirm={handleDelete}
       trigger={
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
-        >
-          <Trash2 className="h-3.5 w-3.5" />
-        </Button>
+        <Tooltip content="Excluir profissional">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </Button>
+        </Tooltip>
       }
     />
   );

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Pencil, UserPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -56,22 +57,18 @@ export function ProfessionalFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        className={
-          isEdit
-            ? "inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted"
-            : "inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-        }
-      >
-        {isEdit ? (
-          <Pencil className="h-3.5 w-3.5" />
-        ) : (
-          <>
-            <UserPlus className="h-4 w-4" />
-            Novo profissional
-          </>
-        )}
-      </DialogTrigger>
+      {isEdit ? (
+        <Tooltip content="Editar profissional">
+          <DialogTrigger className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted">
+            <Pencil className="h-3.5 w-3.5" />
+          </DialogTrigger>
+        </Tooltip>
+      ) : (
+        <DialogTrigger className="inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+          <UserPlus className="h-4 w-4" />
+          Novo profissional
+        </DialogTrigger>
+      )}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>

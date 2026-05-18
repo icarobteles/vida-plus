@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Video } from "lucide-react";
 import Link from "next/link";
 
@@ -121,13 +122,14 @@ export default async function AgendamentosPage() {
                       {a.status === "SCHEDULED" &&
                         (user.role === "PATIENT" ||
                           user.role === "PROFESSIONAL") && (
-                          <Link
-                            href="/telemedicina"
-                            className="inline-flex h-8 items-center gap-1 rounded-md border border-input bg-background px-3 text-xs font-medium hover:bg-muted"
-                          >
-                            <Video className="h-3 w-3" />
-                            Teleconsulta
-                          </Link>
+                          <Tooltip content="Teleconsulta">
+                            <Link
+                              href="/telemedicina"
+                              className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
+                            >
+                              <Video className="h-4 w-4" />
+                            </Link>
+                          </Tooltip>
                         )}
                     </TableCell>
                   </TableRow>

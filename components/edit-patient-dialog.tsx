@@ -13,6 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Tooltip } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 import { Pencil } from "lucide-react";
 
@@ -51,9 +52,11 @@ export function EditPatientDialog({ patient }: { patient: Patient }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted">
-        <Pencil className="h-3.5 w-3.5" />
-      </DialogTrigger>
+      <Tooltip content="Editar paciente">
+        <DialogTrigger className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted">
+          <Pencil className="h-3.5 w-3.5" />
+        </DialogTrigger>
+      </Tooltip>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Editar paciente</DialogTitle>
