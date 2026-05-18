@@ -23,10 +23,15 @@ export default async function DashboardPage() {
         ? { professionalId: user.id }
         : {};
 
-  const [appointmentsCount, recordsCount] = await Promise.all([
-    prisma.appointment.count({ where: appointmentWhere }),
-    prisma.medicalRecord.count({ where: recordsWhere }),
-  ]);
+  const prescriptionsWhere =
+    user.role === "PROFESSIONAL" ? { professionalId: user.id } : {};
+
+  const [appointmentsCount, recordsCount, prescriptionsCount] =
+    await Promise.all([
+      prisma.appointment.count({ where: appointmentWhere }),
+      prisma.medicalRecord.count({ where: recordsWhere }),
+      prisma.prescription.count({ where: prescriptionsWhere }),
+    ]);
 
   const cards = {
     ADMIN: [
@@ -42,6 +47,7 @@ export default async function DashboardPage() {
     PROFESSIONAL: [
       { title: "Minhas consultas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
       { title: "Prontuários", value: recordsCount, href: "/prontuario", icon: FileText },
+      { title: "Receitas emitidas", value: prescriptionsCount, href: "/receitas", icon: FileText },
       { title: "Telemedicina", value: "—", href: "/telemedicina", icon: Video },
     ],
   };
