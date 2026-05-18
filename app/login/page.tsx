@@ -14,7 +14,7 @@ export default function LoginPage() {
         </p>
       </div>
       <LoginForm />
-      <Alert className="mt-6 max-w-md border-emerald-200 bg-emerald-50/80">
+      <Alert className="mt-6 max-w-md border-emerald-200 bg-emerald-50/80 dark:border-emerald-800 dark:bg-emerald-950/60">
         <Shield className="h-4 w-4" />
         <AlertTitle className="text-sm">LGPD</AlertTitle>
         <AlertDescription className="text-xs">

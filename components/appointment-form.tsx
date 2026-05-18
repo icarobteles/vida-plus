@@ -60,7 +60,7 @@ export function AppointmentFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+      <DialogTrigger className="inline-flex h-9 cursor-pointer items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90">
         Agendar consulta
       </DialogTrigger>
       <DialogContent>
@@ -81,7 +81,7 @@ export function AppointmentFormDialog({
                 </SelectTrigger>
                 <SelectContent>
                   {patients.map((p) => (
-                    <SelectItem key={p.id} value={p.id}>
+                    <SelectItem key={p.id} value={p.id} label={p.name}>
                       {p.name}
                     </SelectItem>
                   ))}
@@ -104,7 +104,7 @@ export function AppointmentFormDialog({
               </SelectTrigger>
               <SelectContent>
                 {professionals.map((p) => (
-                  <SelectItem key={p.id} value={p.id}>
+                  <SelectItem key={p.id} value={p.id} label={p.name}>
                     {p.name}
                   </SelectItem>
                 ))}
