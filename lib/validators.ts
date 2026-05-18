@@ -48,7 +48,11 @@ export const prescriptionSchema = z.object({
 export const professionalSchema = z.object({
   name: z.string().min(3, "Nome deve ter ao menos 3 caracteres"),
   email: z.string().email("E-mail inválido"),
-  password: z.string().min(6, "Senha deve ter ao menos 6 caracteres").optional().or(z.literal("")),
+  password: z
+    .string()
+    .min(6, "Senha deve ter ao menos 6 caracteres")
+    .optional()
+    .or(z.literal("")),
 });
 
 export const loginSchema = z.object({

@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { createProfessional, updateProfessional } from "@/app/actions/professionals";
+import {
+  createProfessional,
+  updateProfessional,
+} from "@/app/actions/professionals";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -13,8 +12,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Pencil, UserPlus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface Professional {
   id: string;
@@ -44,7 +47,9 @@ export function ProfessionalFormDialog({
       toast.error(result.error);
       return;
     }
-    toast.success(isEdit ? "Profissional atualizado." : "Profissional cadastrado.");
+    toast.success(
+      isEdit ? "Profissional atualizado." : "Profissional cadastrado.",
+    );
     setOpen(false);
     router.refresh();
   }
@@ -106,7 +111,11 @@ export function ProfessionalFormDialog({
             />
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Salvando..." : isEdit ? "Salvar alterações" : "Cadastrar"}
+            {loading
+              ? "Salvando..."
+              : isEdit
+                ? "Salvar alterações"
+                : "Cadastrar"}
           </Button>
         </form>
       </DialogContent>

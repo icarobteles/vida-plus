@@ -1,9 +1,13 @@
-import { requireRole } from "@/lib/session";
-import { prisma } from "@/lib/prisma";
-import { ProfessionalFormDialog } from "@/components/professional-form";
 import { DeleteProfessionalButton } from "@/components/delete-professional-button";
+import { ProfessionalFormDialog } from "@/components/professional-form";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -12,6 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { prisma } from "@/lib/prisma";
+import { requireRole } from "@/lib/session";
 
 export default async function ProfissionaisPage() {
   await requireRole(["ADMIN"]);

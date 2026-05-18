@@ -1,9 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import type { Role } from "@/app/generated/prisma/client";
 import {
   Sheet,
   SheetContent,
@@ -12,16 +9,38 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import type { Role } from "@/app/generated/prisma/client";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/dashboard", label: "Dashboard", roles: ["ADMIN", "PATIENT", "PROFESSIONAL"] as Role[] },
+  {
+    href: "/dashboard",
+    label: "Dashboard",
+    roles: ["ADMIN", "PATIENT", "PROFESSIONAL"] as Role[],
+  },
   { href: "/pacientes", label: "Pacientes", roles: ["ADMIN"] as Role[] },
-  { href: "/profissionais", label: "Profissionais", roles: ["ADMIN"] as Role[] },
-  { href: "/agendamentos", label: "Agendamentos", roles: ["PATIENT", "ADMIN", "PROFESSIONAL"] as Role[] },
-  { href: "/prontuario", label: "Prontuário", roles: ["PATIENT", "PROFESSIONAL", "ADMIN"] as Role[] },
+  {
+    href: "/profissionais",
+    label: "Profissionais",
+    roles: ["ADMIN"] as Role[],
+  },
+  {
+    href: "/agendamentos",
+    label: "Agendamentos",
+    roles: ["PATIENT", "ADMIN", "PROFESSIONAL"] as Role[],
+  },
+  {
+    href: "/prontuario",
+    label: "Prontuário",
+    roles: ["PATIENT", "PROFESSIONAL", "ADMIN"] as Role[],
+  },
   { href: "/receitas", label: "Receitas", roles: ["PROFESSIONAL"] as Role[] },
-  { href: "/telemedicina", label: "Telemedicina", roles: ["PATIENT", "PROFESSIONAL"] as Role[] },
+  {
+    href: "/telemedicina",
+    label: "Telemedicina",
+    roles: ["PATIENT", "PROFESSIONAL"] as Role[],
+  },
   { href: "/relatorios", label: "Relatórios", roles: ["ADMIN"] as Role[] },
 ];
 

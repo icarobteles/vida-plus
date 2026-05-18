@@ -1,7 +1,11 @@
-import { requireRole } from "@/lib/session";
-import { prisma } from "@/lib/prisma";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -10,7 +14,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { BarChart3, Users, Calendar, FileText, Pill } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import { requireRole } from "@/lib/session";
+import { BarChart3, Calendar, FileText, Pill, Users } from "lucide-react";
 
 export default async function RelatoriosPage() {
   await requireRole(["ADMIN"]);
@@ -94,7 +100,9 @@ export default async function RelatoriosPage() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Registros clínicos</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Registros clínicos
+            </CardTitle>
             <FileText className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -103,7 +111,9 @@ export default async function RelatoriosPage() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Receitas emitidas</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Receitas emitidas
+            </CardTitle>
             <Pill className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -125,15 +135,21 @@ export default async function RelatoriosPage() {
         <CardContent>
           <div className="flex flex-wrap gap-4">
             <div className="rounded-lg border p-4 text-center">
-              <p className="text-2xl font-bold text-blue-600">{scheduledCount}</p>
+              <p className="text-2xl font-bold text-blue-600">
+                {scheduledCount}
+              </p>
               <p className="text-xs text-muted-foreground">Agendadas</p>
             </div>
             <div className="rounded-lg border p-4 text-center">
-              <p className="text-2xl font-bold text-emerald-600">{completedCount}</p>
+              <p className="text-2xl font-bold text-emerald-600">
+                {completedCount}
+              </p>
               <p className="text-xs text-muted-foreground">Concluídas</p>
             </div>
             <div className="rounded-lg border p-4 text-center">
-              <p className="text-2xl font-bold text-red-600">{cancelledCount}</p>
+              <p className="text-2xl font-bold text-red-600">
+                {cancelledCount}
+              </p>
               <p className="text-xs text-muted-foreground">Canceladas</p>
             </div>
           </div>

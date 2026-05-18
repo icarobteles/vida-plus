@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
 import { professionalSchema } from "@/lib/validators";
 import bcrypt from "bcryptjs";
+import { revalidatePath } from "next/cache";
 
 export async function createProfessional(formData: FormData) {
   await requireRole(["ADMIN"]);
@@ -58,7 +58,8 @@ export async function updateProfessional(id: string, formData: FormData) {
   const existing = await prisma.user.findUnique({
     where: { email: parsed.data.email },
   });
-  if (existing && existing.id !== id) return { error: "E-mail já cadastrado por outro usuário." };
+  if (existing && existing.id !== id)
+    return { error: "E-mail já cadastrado por outro usuário." };
 
   const data: { name: string; email: string; passwordHash?: string } = {
     name: parsed.data.name,
@@ -79,7 +80,8 @@ export async function deleteProfessional(id: string) {
   await requireRole(["ADMIN"]);
 
   const user = await prisma.user.findUnique({ where: { id } });
-  if (!user || user.role !== "PROFESSIONAL") return { error: "Profissional não encontrado." };
+  if (!user || user.role !== "PROFESSIONAL")
+    return { error: "Profissional não encontrado." };
 
   await prisma.user.delete({ where: { id } });
 

@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import type { Role } from "@/app/generated/prisma/client";
+import { cn } from "@/lib/utils";
 import {
+  Activity,
   BarChart3,
   Calendar,
   FileText,
@@ -10,10 +11,9 @@ import {
   Stethoscope,
   Users,
   Video,
-  Activity,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import type { Role } from "@/app/generated/prisma/client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links: {
   href: string;
