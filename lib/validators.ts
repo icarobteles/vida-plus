@@ -34,6 +34,11 @@ export const appointmentSchema = z.object({
   notes: z.string().optional(),
 });
 
+export const medicalRecordSchema = z.object({
+  type: z.string().min(1, "Tipo do registro é obrigatório"),
+  description: z.string().min(3, "Descrição deve ter ao menos 3 caracteres"),
+});
+
 export const loginSchema = z.object({
   email: z.string().email("E-mail inválido"),
   password: z.string().min(1, "Senha é obrigatória"),

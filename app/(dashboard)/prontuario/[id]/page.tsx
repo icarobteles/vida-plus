@@ -6,6 +6,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { MedicalRecordFormDialog } from "@/components/medical-record-form";
 
 export default async function ProntuarioDetailPage({
   params,
@@ -40,11 +41,16 @@ export default async function ProntuarioDetailPage({
         <ArrowLeft className="mr-2 h-4 w-4" />
         Voltar
       </Link>
-      <div>
-        <h1 className="text-2xl font-bold">Prontuário — {patient.name}</h1>
-        <p className="text-sm text-muted-foreground">
-          CPF: {patient.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}
-        </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Prontuário — {patient.name}</h1>
+          <p className="text-sm text-muted-foreground">
+            CPF: {patient.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}
+          </p>
+        </div>
+        {user.role === "PROFESSIONAL" && (
+          <MedicalRecordFormDialog patientId={id} />
+        )}
       </div>
       <Alert>
         <Shield className="h-4 w-4" />
