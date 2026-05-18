@@ -69,7 +69,7 @@ export function PrescriptionFormDialog({
         <form onSubmit={onSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="patient">Paciente</Label>
-            <Select value={patientId} onValueChange={setPatientId}>
+            <Select value={patientId} onValueChange={(v) => setPatientId(v ?? "")}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecione o paciente">
                   {patients.find((p) => p.id === patientId)?.name}
