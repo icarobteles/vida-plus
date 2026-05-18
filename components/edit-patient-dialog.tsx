@@ -1,11 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { updatePatient } from "@/app/actions/patients";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -13,9 +9,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Tooltip } from "@/components/ui/tooltip";
-import { toast } from "sonner";
 import { Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface Patient {
   id: string;
@@ -34,7 +34,10 @@ export function EditPatientDialog({ patient }: { patient: Patient }) {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    const result = await updatePatient(patient.id, new FormData(e.currentTarget));
+    const result = await updatePatient(
+      patient.id,
+      new FormData(e.currentTarget),
+    );
     setLoading(false);
     if (result.error) {
       toast.error(result.error);

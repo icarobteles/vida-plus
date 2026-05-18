@@ -1,11 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { completeAppointment } from "@/app/actions/appointments";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
-import { toast } from "sonner";
 import { CheckCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function CompleteAppointmentButton({ id }: { id: string }) {
   const router = useRouter();

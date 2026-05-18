@@ -17,9 +17,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Tooltip } from "@/components/ui/tooltip";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
-import { Tooltip } from "@/components/ui/tooltip";
 import { Video } from "lucide-react";
 import Link from "next/link";
 
@@ -95,7 +95,7 @@ export default async function AgendamentosPage() {
                 <TableHead>Profissional</TableHead>
                 <TableHead>Data/Hora</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead></TableHead>
+                <TableHead>Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

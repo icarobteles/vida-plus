@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useRef, useState } from "react";
 
 interface TooltipProps {
   content: string;
@@ -23,7 +23,11 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
   }
 
   return (
-    <div className="relative inline-flex" onMouseEnter={show} onMouseLeave={hide}>
+    <div
+      className="relative inline-flex"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+    >
       {children}
       {visible && (
         <div
@@ -34,6 +38,14 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
           )}
         >
           {content}
+          <span
+            className={cn(
+              "absolute left-1/2 -translate-x-1/2 border-4 border-transparent",
+              side === "top"
+                ? "top-full border-t-foreground"
+                : "bottom-full border-b-foreground",
+            )}
+          />
         </div>
       )}
     </div>

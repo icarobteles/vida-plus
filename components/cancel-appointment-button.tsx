@@ -1,12 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { cancelAppointment } from "@/app/actions/appointments";
-import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/confirm-dialog";
+import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
-import { toast } from "sonner";
 import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function CancelAppointmentButton({ id }: { id: string }) {
   const router = useRouter();

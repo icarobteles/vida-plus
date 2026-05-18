@@ -45,7 +45,7 @@ export default async function PacientesPage() {
                 <TableHead>CPF</TableHead>
                 <TableHead>Nascimento</TableHead>
                 <TableHead>Contato</TableHead>
-                <TableHead></TableHead>
+                <TableHead>Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

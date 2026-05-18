@@ -61,7 +61,7 @@ export default async function ProfissionaisPage() {
                 <TableHead>E-mail</TableHead>
                 <TableHead>Consultas</TableHead>
                 <TableHead>Registros</TableHead>
-                <TableHead></TableHead>
+                <TableHead>Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
