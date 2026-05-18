@@ -7,7 +7,7 @@ const { auth } = NextAuth(authConfig);
 
 const roleRoutes: Record<string, Role[]> = {
   "/pacientes": ["ADMIN"],
-  "/agendamentos": ["PATIENT", "ADMIN"],
+  "/agendamentos": ["PATIENT", "ADMIN", "PROFESSIONAL"],
   "/telemedicina": ["PATIENT", "PROFESSIONAL"],
 };
 
