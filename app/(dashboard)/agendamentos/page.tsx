@@ -2,6 +2,7 @@ import { requireRole } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { AppointmentFormDialog } from "@/components/appointment-form";
 import { CancelAppointmentButton } from "@/components/cancel-appointment-button";
+import { CompleteAppointmentButton } from "@/components/complete-appointment-button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -101,10 +102,14 @@ export default async function AgendamentosPage() {
                     <TableCell>
                       <Badge variant={st.variant}>{st.label}</Badge>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="flex gap-2">
                       {a.status === "SCHEDULED" && canSchedule && (
                         <CancelAppointmentButton id={a.id} />
                       )}
+                      {a.status === "SCHEDULED" &&
+                        user.role === "PROFESSIONAL" && (
+                          <CompleteAppointmentButton id={a.id} />
+                        )}
                     </TableCell>
                   </TableRow>
                 );

@@ -39,6 +39,22 @@ export async function createAppointment(formData: FormData) {
   return { success: true };
 }
 
+export async function completeAppointment(id: string) {
+  const user = await requireRole(["PROFESSIONAL"]);
+  const appointment = await prisma.appointment.findUnique({ where: { id } });
+  if (!appointment) return { error: "Consulta não encontrada." };
+  if (appointment.professionalId !== user.id) return { error: "Sem permissão." };
+  if (appointment.status !== "SCHEDULED") return { error: "Somente consultas agendadas podem ser concluídas." };
+
+  await prisma.appointment.update({
+    where: { id },
+    data: { status: "COMPLETED" },
+  });
+
+  revalidatePath("/agendamentos");
+  return { success: true };
+}
+
 export async function cancelAppointment(id: string) {
   const user = await requireSession();
   const appointment = await prisma.appointment.findUnique({
