@@ -1,3 +1,4 @@
+import { LgpdBanner } from "@/components/lgpd-banner";
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <Toaster />
+          <LgpdBanner />
         </Providers>
       </body>
     </html>
