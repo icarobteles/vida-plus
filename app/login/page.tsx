@@ -1,7 +1,6 @@
-import { Activity } from "lucide-react";
 import { LoginForm } from "@/components/login-form";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Shield } from "lucide-react";
+import { Activity, Shield } from "lucide-react";
 
 export default function LoginPage() {
   return (

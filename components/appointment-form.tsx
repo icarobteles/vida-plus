@@ -1,19 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createAppointment } from "@/app/actions/appointments";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -21,6 +9,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 
 type Professional = { id: string; name: string };
@@ -125,7 +125,11 @@ export function AppointmentFormDialog({
             <Label htmlFor="notes">Observações</Label>
             <Textarea id="notes" name="notes" rows={2} />
           </div>
-          <Button type="submit" className="w-full" disabled={loading || !professionalId}>
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={loading || !professionalId}
+          >
             {loading ? "Agendando..." : "Confirmar agendamento"}
           </Button>
         </form>

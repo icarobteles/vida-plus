@@ -11,7 +11,7 @@ const roleRoutes: Record<string, Role[]> = {
   "/telemedicina": ["PATIENT", "PROFESSIONAL"],
 };
 
-export default auth((req) => {
+export const proxy = auth((req) => {
   const { pathname } = req.nextUrl;
   const isLoggedIn = !!req.auth;
 
