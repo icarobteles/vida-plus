@@ -32,6 +32,7 @@ export function CancelAppointmentButton({ id }: { id: string }) {
           <Button
             variant="ghost"
             size="icon"
+            aria-label="Cancelar consulta"
             className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
           >
             <X className="h-4 w-4" />

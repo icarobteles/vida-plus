@@ -23,5 +23,5 @@ test("admin cadastra novo profissional de saúde", async ({ page }) => {
   await expect(page.getByText("Profissional cadastrado")).toBeVisible({
     timeout: 10000,
   });
-  await expect(page.getByText("Dr. E2E Teste")).toBeVisible();
+  await expect(page.getByText("Dr. E2E Teste").first()).toBeVisible();
 });

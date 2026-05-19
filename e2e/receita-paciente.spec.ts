@@ -14,6 +14,6 @@ test("paciente visualiza suas receitas prescritas", async ({ page }) => {
   await expect(page.getByText("Receitas prescritas para você")).toBeVisible();
   await expect(page.getByText("Minhas receitas")).toBeVisible();
 
-  await expect(page.getByText("Amoxicilina 500mg")).toBeVisible();
+  await expect(page.getByText("Amoxicilina 500mg").first()).toBeVisible();
   await expect(page.getByText("Nova receita")).not.toBeVisible();
 });

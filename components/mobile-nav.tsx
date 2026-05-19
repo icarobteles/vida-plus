@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const links = [
   {
@@ -51,9 +52,10 @@ const links = [
 export function MobileNav({ role }: { role: Role }) {
   const pathname = usePathname();
   const visible = links.filter((l) => l.roles.includes(role));
+  const [open, setOpen] = useState(false);
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background md:hidden"
         aria-label="Abrir menu"
@@ -64,14 +66,18 @@ export function MobileNav({ role }: { role: Role }) {
         <SheetHeader>
           <SheetTitle>VidaPlus</SheetTitle>
         </SheetHeader>
-        <nav className="mt-6 flex flex-col gap-2">
+        <nav
+          aria-label="Menu principal"
+          className="mt-6 flex flex-col gap-1 px-4"
+        >
           {visible.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
+              onClick={() => setOpen(false)}
               className={cn(
-                "rounded-lg px-3 py-2 text-sm font-medium",
-                pathname === href
+                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                pathname === href || pathname.startsWith(href + "/")
                   ? "bg-primary text-primary-foreground"
                   : "hover:bg-muted",
               )}

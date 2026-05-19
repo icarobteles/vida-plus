@@ -6,11 +6,9 @@ export default async function TelemedicinaPage() {
   const user = await requireRole(["PATIENT", "PROFESSIONAL"]);
 
   const where =
-    user.role === "PATIENT" && user.patientId
-      ? { patientId: user.patientId, status: "SCHEDULED" as const }
-      : user.role === "PROFESSIONAL"
-        ? { professionalId: user.id, status: "SCHEDULED" as const }
-        : { status: "SCHEDULED" as const };
+    user.role === "PATIENT"
+      ? { patientId: user.patientId ?? "", status: "SCHEDULED" as const }
+      : { professionalId: user.id, status: "SCHEDULED" as const };
 
   const appointments = await prisma.appointment.findMany({
     where,

@@ -34,5 +34,5 @@ test("profissional emite receita digital para paciente", async ({ page }) => {
   await expect(page.getByText("Receita emitida com sucesso")).toBeVisible({
     timeout: 10000,
   });
-  await expect(page.getByText("Paracetamol 750mg")).toBeVisible();
+  await expect(page.getByText("Paracetamol 750mg").first()).toBeVisible();
 });

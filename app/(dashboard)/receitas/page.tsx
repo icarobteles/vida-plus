@@ -32,7 +32,7 @@ export default async function ReceitasPage() {
   const prescriptions = await prisma.prescription.findMany({
     where: isProfessional
       ? { professionalId: user.id }
-      : { patientId: user.patientId ?? undefined },
+      : { patientId: user.patientId ?? "" },
     include: {
       patient: { select: { name: true } },
       professional: { select: { name: true } },
@@ -53,7 +53,9 @@ export default async function ReceitasPage() {
         </div>
         {isProfessional && <PrescriptionFormDialog patients={patients} />}
       </div>
-      <Card>
+
+      {/* Desktop */}
+      <Card className="hidden md:block">
         <CardHeader>
           <CardTitle>
             {isProfessional ? "Receitas emitidas" : "Minhas receitas"}
@@ -109,6 +111,51 @@ export default async function ReceitasPage() {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Mobile */}
+      <div className="space-y-3 md:hidden">
+        <p className="text-sm text-muted-foreground">
+          {prescriptions.length} registro(s)
+        </p>
+        {prescriptions.map((p) => (
+          <div key={p.id} className="rounded-lg border bg-card p-4">
+            <dl className="space-y-2 text-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <dt className="text-xs text-muted-foreground">
+                    {isProfessional ? "Paciente" : "Profissional"}
+                  </dt>
+                  <dd className="font-medium">
+                    {isProfessional ? p.patient.name : p.professional.name}
+                  </dd>
+                </div>
+                <Badge variant="outline">
+                  {new Date(p.createdAt).toLocaleDateString("pt-BR")}
+                </Badge>
+              </div>
+              <div>
+                <dt className="text-xs text-muted-foreground">Medicamento</dt>
+                <dd>{p.medication}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-muted-foreground">Posologia</dt>
+                <dd>{p.dosage}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-muted-foreground">Instruções</dt>
+                <dd className="text-muted-foreground">{p.instructions}</dd>
+              </div>
+            </dl>
+          </div>
+        ))}
+        {prescriptions.length === 0 && (
+          <p className="py-8 text-center text-sm text-muted-foreground">
+            {isProfessional
+              ? "Nenhuma receita emitida ainda."
+              : "Nenhuma receita prescrita para você."}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

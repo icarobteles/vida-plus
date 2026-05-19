@@ -1,9 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
 import { prescriptionSchema } from "@/lib/validators";
+import { revalidatePath } from "next/cache";
 
 export async function createPrescription(formData: FormData) {
   const user = await requireRole(["PROFESSIONAL"]);
@@ -22,18 +22,24 @@ export async function createPrescription(formData: FormData) {
   const patientId = formData.get("patientId") as string;
   if (!patientId) return { error: "Paciente é obrigatório." };
 
-  const patient = await prisma.patient.findUnique({ where: { id: patientId } });
-  if (!patient) return { error: "Paciente não encontrado." };
+  try {
+    const patient = await prisma.patient.findUnique({
+      where: { id: patientId },
+    });
+    if (!patient) return { error: "Paciente não encontrado." };
 
-  await prisma.prescription.create({
-    data: {
-      patientId,
-      professionalId: user.id,
-      medication: parsed.data.medication,
-      dosage: parsed.data.dosage,
-      instructions: parsed.data.instructions,
-    },
-  });
+    await prisma.prescription.create({
+      data: {
+        patientId,
+        professionalId: user.id,
+        medication: parsed.data.medication,
+        dosage: parsed.data.dosage,
+        instructions: parsed.data.instructions,
+      },
+    });
+  } catch {
+    return { error: "Erro ao emitir receita." };
+  }
 
   revalidatePath(`/receitas`);
   return { success: true };

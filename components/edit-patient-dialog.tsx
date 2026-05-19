@@ -56,7 +56,10 @@ export function EditPatientDialog({ patient }: { patient: Patient }) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Tooltip content="Editar paciente">
-        <DialogTrigger className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted">
+        <DialogTrigger
+          aria-label="Editar paciente"
+          className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted"
+        >
           <Pencil className="h-3.5 w-3.5" />
         </DialogTrigger>
       </Tooltip>

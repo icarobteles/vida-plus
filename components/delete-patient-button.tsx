@@ -38,6 +38,7 @@ export function DeletePatientButton({
           <Button
             variant="ghost"
             size="icon"
+            aria-label="Excluir paciente"
             className="h-8 w-8 text-destructive hover:bg-destructive/10 hover:text-destructive"
           >
             <Trash2 className="h-3.5 w-3.5" />

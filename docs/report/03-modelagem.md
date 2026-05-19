@@ -9,7 +9,7 @@
 | Estilização      | Tailwind CSS                       | 4.x    |
 | Componentes      | shadcn/ui + @base-ui/react         | —      |
 | Autenticação     | Auth.js (NextAuth v5, Credentials) | 5.x    |
-| ORM              | Prisma (adapter better-sqlite3)    | 6.x    |
+| ORM              | Prisma (adapter better-sqlite3)    | 7.x    |
 | Banco de dados   | SQLite                             | —      |
 | Validação        | Zod + React Hook Form              | —      |
 | Videoconferência | Jitsi Meet (@jitsi/react-sdk)      | —      |

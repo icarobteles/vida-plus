@@ -48,8 +48,8 @@ export default async function AgendamentosPage() {
   const canSchedule = user.role === "PATIENT" || user.role === "ADMIN";
 
   const where =
-    user.role === "PATIENT" && user.patientId
-      ? { patientId: user.patientId }
+    user.role === "PATIENT"
+      ? { patientId: user.patientId ?? "" }
       : user.role === "PROFESSIONAL"
         ? { professionalId: user.id }
         : {};
@@ -82,7 +82,9 @@ export default async function AgendamentosPage() {
           />
         )}
       </div>
-      <Card>
+
+      {/* Desktop */}
+      <Card className="hidden md:block">
         <CardHeader>
           <CardTitle>Consultas</CardTitle>
           <CardDescription>{appointments.length} registro(s)</CardDescription>
@@ -125,6 +127,7 @@ export default async function AgendamentosPage() {
                           <Tooltip content="Teleconsulta">
                             <Link
                               href="/telemedicina"
+                              aria-label="Teleconsulta"
                               className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
                             >
                               <Video className="h-4 w-4" />
@@ -139,6 +142,64 @@ export default async function AgendamentosPage() {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Mobile */}
+      <div className="space-y-3 md:hidden">
+        <p className="text-sm text-muted-foreground">
+          {appointments.length} registro(s)
+        </p>
+        {appointments.map((a) => {
+          const st = statusMap[a.status];
+          const hasActions =
+            a.status === "SCHEDULED" &&
+            (canSchedule || user.role === "PROFESSIONAL");
+
+          return (
+            <div key={a.id} className="relative rounded-lg border bg-card p-4">
+              {hasActions && (
+                <div className="absolute right-3 top-3 flex gap-1">
+                  {a.status === "SCHEDULED" && canSchedule && (
+                    <CancelAppointmentButton id={a.id} />
+                  )}
+                  {a.status === "SCHEDULED" && user.role === "PROFESSIONAL" && (
+                    <CompleteAppointmentButton id={a.id} />
+                  )}
+                  {a.status === "SCHEDULED" &&
+                    (user.role === "PATIENT" ||
+                      user.role === "PROFESSIONAL") && (
+                      <Link
+                        href="/telemedicina"
+                        aria-label="Teleconsulta"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-muted-foreground hover:bg-muted hover:text-foreground"
+                      >
+                        <Video className="h-4 w-4" />
+                      </Link>
+                    )}
+                </div>
+              )}
+              <dl className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <Badge variant={st.variant}>{st.label}</Badge>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">Paciente</dt>
+                  <dd className="font-medium">{a.patient.name}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">
+                    Profissional
+                  </dt>
+                  <dd>{a.professional.name}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">Data/Hora</dt>
+                  <dd>{new Date(a.scheduledAt).toLocaleString("pt-BR")}</dd>
+                </div>
+              </dl>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
