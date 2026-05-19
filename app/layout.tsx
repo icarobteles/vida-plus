@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MedFlow | SGHSS VidaPlus",
+  title: "VidaPlus | SGHSS",
   description: "Sistema de Gestão Hospitalar e de Serviços de Saúde",
 };
 

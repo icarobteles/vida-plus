@@ -80,11 +80,14 @@ export function AppSidebar({ role }: { role: Role }) {
       <div className="flex h-16 items-center gap-2 border-b px-6">
         <Activity className="h-7 w-7 text-primary" />
         <div>
-          <p className="font-semibold leading-tight">MedFlow</p>
+          <p className="font-semibold leading-tight">VidaPlus</p>
           <p className="text-xs text-muted-foreground">VidaPlus SGHSS</p>
         </div>
       </div>
-      <nav aria-label="Menu principal" className="flex flex-1 flex-col gap-1 p-4">
+      <nav
+        aria-label="Menu principal"
+        className="flex flex-1 flex-col gap-1 p-4"
+      >
         {visible.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}

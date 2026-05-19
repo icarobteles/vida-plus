@@ -1,4 +1,4 @@
-# MedFlow — SGHSS VidaPlus
+# VidaPlus — SGHSS
 
 Sistema de Gestão Hospitalar e de Serviços de Saúde (projeto acadêmico Uninter).
 
@@ -8,6 +8,7 @@ Sistema de Gestão Hospitalar e de Serviços de Saúde (projeto acadêmico Unint
 - Prisma + SQLite
 - Auth.js (Credentials)
 - Tailwind CSS + shadcn/ui
+- Jitsi Meet (teleconsulta)
 - Vitest + Playwright
 
 ## Executar localmente
@@ -24,17 +25,17 @@ Acesse [http://localhost:3000](http://localhost:3000).
 
 ## Credenciais demo
 
-| Perfil       | E-mail               | Senha  |
-|-------------|----------------------|--------|
-| Admin       | admin@vida.plus      | 123456 |
-| Profissional| medico@vida.plus     | 123456 |
-| Paciente    | paciente@vida.plus   | 123456 |
+| Perfil       | E-mail             | Senha  |
+| ------------ | ------------------ | ------ |
+| Admin        | admin@vida.plus    | 123456 |
+| Profissional | medico@vida.plus   | 123456 |
+| Paciente     | paciente@vida.plus | 123456 |
 
 ## Testes
 
 ```bash
-npm test          # Vitest
-npm run test:e2e  # Playwright
+npm test          # Vitest (32 testes unitários)
+npm run test:e2e  # Playwright (14 testes E2E)
 ```
 
 ## Deploy (Vercel)
@@ -46,8 +47,15 @@ npm run test:e2e  # Playwright
 
 ## Funcionalidades
 
-- Login por perfil com rotas protegidas
-- Cadastro de pacientes (admin) com validação de CPF
-- Agendamento e cancelamento de consultas
-- Visualização de prontuário clínico
-- Telemedicina simulada com aviso LGPD
+- Login por perfil com rotas protegidas (RBAC)
+- Cadastro e gestão de pacientes com validação de CPF
+- Cadastro e gestão de profissionais de saúde
+- Agendamento, cancelamento e conclusão de consultas
+- Prontuário eletrônico com histórico clínico
+- Receitas digitais
+- Teleconsulta real via Jitsi Meet
+- Relatórios administrativos com métricas
+- Notificações de consultas próximas
+- Banner de consentimento LGPD
+- Acessibilidade (skip-to-content, aria-labels, focus-visible)
+- Tema claro/escuro

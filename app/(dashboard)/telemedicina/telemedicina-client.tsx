@@ -127,7 +127,7 @@ export function TelemedicinaClient({
         <AlertTitle>Proteção de dados (LGPD)</AlertTitle>
         <AlertDescription>
           As sessões de teleconsulta utilizam salas seguras Jitsi Meet. Dados de
-          vídeo e áudio não são armazenados pelo sistema MedFlow.
+          vídeo e áudio não são armazenados pelo sistema VidaPlus.
         </AlertDescription>
       </Alert>
 

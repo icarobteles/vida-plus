@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const LGPD_KEY = "medflow-lgpd-consent";
+const LGPD_KEY = "vidaplus-lgpd-consent";
 
 export function LgpdBanner() {
   const [visible, setVisible] = useState(false);
@@ -30,10 +30,10 @@ export function LgpdBanner() {
             Proteção de Dados — LGPD (Lei 13.709/2018)
           </p>
           <p className="text-xs text-muted-foreground">
-            Este sistema é um ambiente de demonstração acadêmica. Não armazenamos
-            dados pessoais reais. Ao continuar, você concorda com o uso de dados
-            fictícios para fins educacionais conforme a Lei Geral de Proteção de
-            Dados.
+            Este sistema é um ambiente de demonstração acadêmica. Não
+            armazenamos dados pessoais reais. Ao continuar, você concorda com o
+            uso de dados fictícios para fins educacionais conforme a Lei Geral
+            de Proteção de Dados.
           </p>
         </div>
         <Button size="sm" onClick={accept} className="shrink-0">

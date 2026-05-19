@@ -1,5 +1,5 @@
 ---
-description: Padrões Next.js App Router do MedFlow
+description: Padrões Next.js App Router do VidaPlus
 globs: "**/*.{ts,tsx}"
 alwaysApply: false
 ---
