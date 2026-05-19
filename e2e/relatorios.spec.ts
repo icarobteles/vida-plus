@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test("admin acessa página de relatórios com métricas", async ({ page }) => {
   await page.goto("/login");

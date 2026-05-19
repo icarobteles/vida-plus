@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test("login do admin redireciona para o dashboard", async ({ page }) => {
   await page.goto("/login");
@@ -20,8 +20,6 @@ test("admin vê links de pacientes, profissionais e relatórios", async ({
   await page.getByRole("button", { name: "Entrar" }).click();
   await expect(page).toHaveURL(/\/dashboard/);
   await expect(page.getByRole("link", { name: "Pacientes" })).toBeVisible();
-  await expect(
-    page.getByRole("link", { name: "Profissionais" }),
-  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Profissionais" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Relatórios" })).toBeVisible();
 });
