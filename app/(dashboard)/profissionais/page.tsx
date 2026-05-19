@@ -46,7 +46,9 @@ export default async function ProfissionaisPage() {
         </div>
         <ProfessionalFormDialog />
       </div>
-      <Card>
+
+      {/* Desktop */}
+      <Card className="hidden md:block">
         <CardHeader>
           <CardTitle>Equipe médica</CardTitle>
           <CardDescription>
@@ -93,6 +95,53 @@ export default async function ProfissionaisPage() {
           </Table>
         </CardContent>
       </Card>
+
+      {/* Mobile */}
+      <div className="space-y-3 md:hidden">
+        <p className="text-sm text-muted-foreground">
+          {professionals.length} profissional(is)
+        </p>
+        {professionals.map((p) => (
+          <div key={p.id} className="relative rounded-lg border bg-card p-4">
+            <div className="absolute right-3 top-3 flex gap-1">
+              <ProfessionalFormDialog
+                professional={{
+                  id: p.id,
+                  name: p.name,
+                  email: p.email,
+                }}
+              />
+              <DeleteProfessionalButton id={p.id} name={p.name} />
+            </div>
+            <dl className="space-y-2 text-sm">
+              <div>
+                <dt className="text-xs text-muted-foreground">Nome</dt>
+                <dd className="font-medium">{p.name}</dd>
+              </div>
+              <div>
+                <dt className="text-xs text-muted-foreground">E-mail</dt>
+                <dd className="break-all">{p.email}</dd>
+              </div>
+              <div className="flex gap-6">
+                <div>
+                  <dt className="text-xs text-muted-foreground">Consultas</dt>
+                  <dd>
+                    <Badge variant="outline">
+                      {p._count.appointmentsAsPro}
+                    </Badge>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted-foreground">Registros</dt>
+                  <dd>
+                    <Badge variant="outline">{p._count.medicalRecords}</Badge>
+                  </dd>
+                </div>
+              </div>
+            </dl>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
