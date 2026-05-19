@@ -122,5 +122,6 @@ O projeto foi desenvolvido em **6 entregas incrementais**, cada uma em branch de
 | 5   | `feat/notificacoes-lgpd-a11y` | Notificações, LGPD, acessibilidade, loading states     |
 | 6   | `test/cobertura-completa`     | Testes unitários e E2E expandidos, seed setup/teardown |
 | 7   | `feat/melhorias-finais`       | Receitas para pacientes, cobertura E2E expandida, docs |
+| 8   | `fix/seguranca-e-responsividade` | Correção IDOR, try/catch, responsividade mobile, aria-labels |
 
 Cada entrega seguiu **Conventional Commits** em português com commits atômicos.

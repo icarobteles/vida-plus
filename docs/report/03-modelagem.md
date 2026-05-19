@@ -11,7 +11,7 @@
 | Autenticação     | Auth.js (NextAuth v5, Credentials) | 5.x    |
 | ORM              | Prisma (adapter better-sqlite3)    | 7.x    |
 | Banco de dados   | SQLite                             | —      |
-| Validação        | Zod + React Hook Form              | —      |
+| Validação        | Zod                                | 3.x    |
 | Videoconferência | Jitsi Meet (@jitsi/react-sdk)      | —      |
 | Testes unitários | Vitest                             | —      |
 | Testes E2E       | Playwright                         | —      |
@@ -78,18 +78,64 @@
 - **Role:** `ADMIN` | `PATIENT` | `PROFESSIONAL`
 - **AppointmentStatus:** `SCHEDULED` | `CANCELLED` | `COMPLETED`
 
-## Casos de uso
+## Diagrama de Casos de Uso (UML)
+
+```
+                        ┌─────────────────────────────────────────────┐
+                        │           Sistema VidaPlus (SGHSS)          │
+                        │                                             │
+                        │  ┌───────────────────────────────────────┐  │
+                        │  │         (UC01) Fazer login            │  │
+                        │  └──────────┬──────────┬─────────────────┘  │
+                        │             │          │                    │
+  ┌──────────┐          │  ┌──────────▼────┐  ┌──▼───────────────┐   │
+  │          │          │  │ (UC02)        │  │ (UC03)           │   │
+  │  Admin   ├──────────┼─►│ Cadastrar     │  │ Agendar          │   │
+  │          │          │  │ paciente      │  │ consulta         │◄──┼───┐
+  └──────────┘          │  └───────────────┘  └──────────────────┘   │   │
+       │                │                                             │   │
+       │                │  ┌───────────────┐  ┌──────────────────┐   │   │
+       │                │  │ (UC07)        │  │ (UC08)           │   │   │
+       ├────────────────┼─►│ Gerenciar     │  │ Visualizar       │   │   │
+       │                │  │ profissionais │  │ relatórios       │   │   │
+       │                │  └───────────────┘  └──────────────────┘   │   │
+       │                │                                             │   │
+       │                │  ┌───────────────┐  ┌──────────────────┐   │   │
+  ┌────▼─────┐          │  │ (UC04)        │  │ (UC05)           │   │   │
+  │Profissio-│          │  │ Registrar     │  │ Emitir           │   │   │
+  │  nal     ├──────────┼─►│ prontuário    │  │ receita          │   │   │
+  │          │          │  └───────────────┘  └──────────────────┘   │   │
+  └────┬─────┘          │                                             │   │
+       │                │  ┌───────────────────────────────────────┐  │   │
+       │                │  │ (UC06) Realizar teleconsulta          │  │   │
+       ├────────────────┼─►│                                       │◄─┼───┤
+       │                │  └───────────────────────────────────────┘  │   │
+       │                │                                             │   │
+  ┌────▼─────┐          │  ┌───────────────┐  ┌──────────────────┐   │   │
+  │          │          │  │ (UC09)        │  │ (UC10)           │   │   │
+  │ Paciente ├──────────┼─►│ Visualizar    │  │ Visualizar       │◄──┼───┘
+  │          │          │  │ prontuário    │  │ receitas         │   │
+  └──────────┘          │  └───────────────┘  └──────────────────┘   │
+                        │                                             │
+                        └─────────────────────────────────────────────┘
+```
+
+**Legenda:** Setas indicam associação ator → caso de uso. UC01 é compartilhado por todos os atores. UC06 é compartilhado entre Profissional e Paciente.
+
+## Descrição dos Casos de Uso
 
 | ID   | Caso de uso             | Ator(es)              | Fluxo principal                                                                                                     |
 | ---- | ----------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | UC01 | Login por perfil        | Todos                 | Informar e-mail/senha → Auth.js valida → Redireciona ao dashboard por role                                          |
 | UC02 | Cadastrar paciente      | Admin                 | Acessar `/pacientes` → "Novo paciente" → Preencher formulário com CPF → Validação Zod → Server Action cria no banco |
-| UC03 | Agendar consulta        | Paciente              | Acessar `/agendamentos` → "Agendar consulta" → Selecionar profissional e data → Confirmação                         |
+| UC03 | Agendar consulta        | Paciente, Admin       | Acessar `/agendamentos` → "Agendar consulta" → Selecionar profissional e data → Confirmação                         |
 | UC04 | Registrar prontuário    | Profissional          | Acessar `/prontuario` → Selecionar paciente → "Novo registro" → Tipo + descrição → Salvar                           |
 | UC05 | Emitir receita          | Profissional          | Acessar `/receitas` → Selecionar paciente → Medicamento, posologia, instruções → Salvar                             |
 | UC06 | Teleconsulta            | Paciente/Profissional | Acessar `/telemedicina` → Selecionar consulta agendada → Sala Jitsi Meet é aberta                                   |
 | UC07 | Gerenciar profissionais | Admin                 | Acessar `/profissionais` → CRUD completo (criar, editar, excluir)                                                   |
 | UC08 | Visualizar relatórios   | Admin                 | Acessar `/relatorios` → Métricas agregadas (total pacientes, consultas, status)                                     |
+| UC09 | Visualizar prontuário   | Paciente              | Acessar `/prontuario` → Ver histórico clínico próprio (somente leitura)                                             |
+| UC10 | Visualizar receitas     | Paciente              | Acessar `/receitas` → Ver receitas prescritas para si (somente leitura)                                             |
 
 ## Estrutura de pastas
 
