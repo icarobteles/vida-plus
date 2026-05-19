@@ -18,7 +18,12 @@ export const proxy = auth((req) => {
   const { pathname } = req.nextUrl;
   const isLoggedIn = !!req.auth;
 
+  if (pathname === "/login" && isLoggedIn) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
   if (!isLoggedIn) {
+    if (pathname === "/login") return NextResponse.next();
     return NextResponse.redirect(new URL("/login", req.url));
   }
 
@@ -43,6 +48,7 @@ export const proxy = auth((req) => {
 
 export const config = {
   matcher: [
+    "/login",
     "/dashboard/:path*",
     "/pacientes/:path*",
     "/agendamentos/:path*",
