@@ -25,6 +25,7 @@ export function CompleteAppointmentButton({ id }: { id: string }) {
       <Button
         variant="ghost"
         size="icon"
+        aria-label="Concluir consulta"
         className="h-8 w-8 text-emerald-600 hover:bg-emerald-600/10 hover:text-emerald-600"
         onClick={handleComplete}
       >

@@ -59,7 +59,10 @@ export function ProfessionalFormDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       {isEdit ? (
         <Tooltip content="Editar profissional">
-          <DialogTrigger className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted">
+          <DialogTrigger
+            aria-label="Editar profissional"
+            className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md border border-input bg-background hover:bg-muted"
+          >
             <Pencil className="h-3.5 w-3.5" />
           </DialogTrigger>
         </Tooltip>
