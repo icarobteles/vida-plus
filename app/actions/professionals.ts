@@ -20,8 +20,8 @@ export async function createProfessional(formData: FormData) {
     return { error: parsed.error.issues[0]?.message ?? "Dados inválidos" };
   }
 
-  if (!parsed.data.password) {
-    return { error: "Senha é obrigatória para novo profissional." };
+  if (!parsed.data.password || parsed.data.password.length < 6) {
+    return { error: "Senha deve ter ao menos 6 caracteres." };
   }
 
   try {

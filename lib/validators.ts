@@ -30,7 +30,13 @@ export const patientSchema = z.object({
 
 export const appointmentSchema = z.object({
   professionalId: z.string().min(1, "Selecione um profissional"),
-  scheduledAt: z.string().min(1, "Data e hora são obrigatórias"),
+  scheduledAt: z
+    .string()
+    .min(1, "Data e hora são obrigatórias")
+    .refine(
+      (val) => new Date(val).getTime() > Date.now(),
+      "A data deve ser futura",
+    ),
   notes: z.string().optional(),
 });
 
