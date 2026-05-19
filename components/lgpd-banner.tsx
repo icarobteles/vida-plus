@@ -2,24 +2,32 @@
 
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 
 const LGPD_KEY = "vidaplus-lgpd-consent";
 
-export function LgpdBanner() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const consent = localStorage.getItem(LGPD_KEY);
-    if (!consent) setVisible(true);
+function useHasConsent() {
+  const subscribe = useCallback((cb: () => void) => {
+    window.addEventListener("storage", cb);
+    return () => window.removeEventListener("storage", cb);
   }, []);
+  return useSyncExternalStore(
+    subscribe,
+    () => localStorage.getItem(LGPD_KEY) !== null,
+    () => true,
+  );
+}
+
+export function LgpdBanner() {
+  const hasConsent = useHasConsent();
+  const [dismissed, setDismissed] = useState(false);
 
   function accept() {
     localStorage.setItem(LGPD_KEY, "accepted");
-    setVisible(false);
+    setDismissed(true);
   }
 
-  if (!visible) return null;
+  if (hasConsent || dismissed) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-card p-4 shadow-lg">
