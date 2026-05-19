@@ -17,5 +17,5 @@ test("paciente agenda consulta", async ({ page }) => {
   await page.getByRole("combobox").first().click();
   await page.getByRole("option").first().click();
   await page.getByRole("button", { name: "Confirmar agendamento" }).click();
-  await expect(page.getByText("Agendada")).toBeVisible();
+  await expect(page.getByText("Agendada").first()).toBeVisible();
 });

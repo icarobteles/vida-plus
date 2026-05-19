@@ -17,7 +17,7 @@ test("admin cadastra paciente com CPF válido", async ({ page }) => {
   await page.getByLabel("Data de nascimento").fill("1995-06-20");
   await page.getByRole("button", { name: "Cadastrar" }).click();
 
-  await expect(page.getByText("Teste E2E Paciente")).toBeVisible({
+  await expect(page.getByText("Teste E2E Paciente").first()).toBeVisible({
     timeout: 10000,
   });
 });
