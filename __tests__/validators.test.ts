@@ -1,13 +1,13 @@
-import { describe, it, expect } from "vitest";
 import {
-  isValidCpf,
-  patientSchema,
   appointmentSchema,
+  isValidCpf,
+  loginSchema,
   medicalRecordSchema,
+  patientSchema,
   prescriptionSchema,
   professionalSchema,
-  loginSchema,
 } from "@/lib/validators";
+import { describe, expect, it } from "vitest";
 
 describe("isValidCpf", () => {
   it("aceita CPF válido", () => {
