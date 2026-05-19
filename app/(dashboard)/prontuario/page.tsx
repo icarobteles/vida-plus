@@ -1,30 +1,41 @@
-import Link from "next/link";
-import { requireSession } from "@/lib/session";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { requireSession } from "@/lib/session";
 import { FileText } from "lucide-react";
+import Link from "next/link";
 
 export default async function ProntuarioListPage() {
   const user = await requireSession();
 
-  if (user.role === "PATIENT" && user.patientId) {
-    const patient = await prisma.patient.findUnique({
-      where: { id: user.patientId },
-    });
-    if (patient) {
+  if (user.role === "PATIENT") {
+    if (!user.patientId) {
       return (
         <div className="space-y-4">
           <h1 className="text-2xl font-bold">Meu prontuário</h1>
-          <Link
-            href={`/prontuario/${user.patientId}`}
-            className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-          >
-            <FileText className="mr-2 h-4 w-4" />
-            Ver histórico clínico
-          </Link>
+          <p className="text-muted-foreground">
+            Perfil de paciente não vinculado. Contate o administrador.
+          </p>
         </div>
       );
     }
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Meu prontuário</h1>
+        <Link
+          href={`/prontuario/${user.patientId}`}
+          className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+        >
+          <FileText className="mr-2 h-4 w-4" />
+          Ver histórico clínico
+        </Link>
+      </div>
+    );
   }
 
   const patients = await prisma.patient.findMany({

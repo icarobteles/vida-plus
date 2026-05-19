@@ -9,16 +9,18 @@ export default async function DashboardPage() {
 
   const patientsCount = await prisma.patient.count();
 
+  const noPatientLinked = user.role === "PATIENT" && !user.patientId;
+
   const appointmentWhere =
-    user.role === "PATIENT" && user.patientId
-      ? { status: "SCHEDULED" as const, patientId: user.patientId }
+    user.role === "PATIENT"
+      ? { status: "SCHEDULED" as const, patientId: user.patientId ?? "" }
       : user.role === "PROFESSIONAL"
         ? { status: "SCHEDULED" as const, professionalId: user.id }
         : { status: "SCHEDULED" as const };
 
   const recordsWhere =
-    user.role === "PATIENT" && user.patientId
-      ? { patientId: user.patientId }
+    user.role === "PATIENT"
+      ? { patientId: user.patientId ?? "" }
       : user.role === "PROFESSIONAL"
         ? { professionalId: user.id }
         : {};

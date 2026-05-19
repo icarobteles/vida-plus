@@ -1,9 +1,9 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireRole } from "@/lib/session";
 import { medicalRecordSchema } from "@/lib/validators";
+import { revalidatePath } from "next/cache";
 
 export async function createMedicalRecord(formData: FormData) {
   const user = await requireRole(["PROFESSIONAL"]);
@@ -21,17 +21,23 @@ export async function createMedicalRecord(formData: FormData) {
   const patientId = formData.get("patientId") as string;
   if (!patientId) return { error: "Paciente é obrigatório." };
 
-  const patient = await prisma.patient.findUnique({ where: { id: patientId } });
-  if (!patient) return { error: "Paciente não encontrado." };
+  try {
+    const patient = await prisma.patient.findUnique({
+      where: { id: patientId },
+    });
+    if (!patient) return { error: "Paciente não encontrado." };
 
-  await prisma.medicalRecord.create({
-    data: {
-      patientId,
-      professionalId: user.id,
-      type: parsed.data.type,
-      description: parsed.data.description,
-    },
-  });
+    await prisma.medicalRecord.create({
+      data: {
+        patientId,
+        professionalId: user.id,
+        type: parsed.data.type,
+        description: parsed.data.description,
+      },
+    });
+  } catch {
+    return { error: "Erro ao registrar prontuário." };
+  }
 
   revalidatePath(`/prontuario/${patientId}`);
   return { success: true };

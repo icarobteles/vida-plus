@@ -20,22 +20,29 @@ export async function createProfessional(formData: FormData) {
     return { error: parsed.error.issues[0]?.message ?? "Dados inválidos" };
   }
 
-  const existing = await prisma.user.findUnique({
-    where: { email: parsed.data.email },
-  });
-  if (existing) return { error: "E-mail já cadastrado." };
+  if (!parsed.data.password) {
+    return { error: "Senha é obrigatória para novo profissional." };
+  }
 
-  const password = parsed.data.password || "123456";
-  const passwordHash = await bcrypt.hash(password, 10);
+  try {
+    const existing = await prisma.user.findUnique({
+      where: { email: parsed.data.email },
+    });
+    if (existing) return { error: "E-mail já cadastrado." };
 
-  await prisma.user.create({
-    data: {
-      name: parsed.data.name,
-      email: parsed.data.email,
-      passwordHash,
-      role: "PROFESSIONAL",
-    },
-  });
+    const passwordHash = await bcrypt.hash(parsed.data.password, 10);
+
+    await prisma.user.create({
+      data: {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        passwordHash,
+        role: "PROFESSIONAL",
+      },
+    });
+  } catch {
+    return { error: "Erro ao cadastrar profissional." };
+  }
 
   revalidatePath("/profissionais");
   return { success: true };
@@ -55,22 +62,31 @@ export async function updateProfessional(id: string, formData: FormData) {
     return { error: parsed.error.issues[0]?.message ?? "Dados inválidos" };
   }
 
-  const existing = await prisma.user.findUnique({
-    where: { email: parsed.data.email },
-  });
-  if (existing && existing.id !== id)
-    return { error: "E-mail já cadastrado por outro usuário." };
+  try {
+    const target = await prisma.user.findUnique({ where: { id } });
+    if (!target || target.role !== "PROFESSIONAL") {
+      return { error: "Profissional não encontrado." };
+    }
 
-  const data: { name: string; email: string; passwordHash?: string } = {
-    name: parsed.data.name,
-    email: parsed.data.email,
-  };
+    const existing = await prisma.user.findUnique({
+      where: { email: parsed.data.email },
+    });
+    if (existing && existing.id !== id)
+      return { error: "E-mail já cadastrado por outro usuário." };
 
-  if (parsed.data.password) {
-    data.passwordHash = await bcrypt.hash(parsed.data.password, 10);
+    const data: { name: string; email: string; passwordHash?: string } = {
+      name: parsed.data.name,
+      email: parsed.data.email,
+    };
+
+    if (parsed.data.password) {
+      data.passwordHash = await bcrypt.hash(parsed.data.password, 10);
+    }
+
+    await prisma.user.update({ where: { id }, data });
+  } catch {
+    return { error: "Erro ao atualizar profissional." };
   }
-
-  await prisma.user.update({ where: { id }, data });
 
   revalidatePath("/profissionais");
   return { success: true };
@@ -79,11 +95,18 @@ export async function updateProfessional(id: string, formData: FormData) {
 export async function deleteProfessional(id: string) {
   await requireRole(["ADMIN"]);
 
-  const user = await prisma.user.findUnique({ where: { id } });
-  if (!user || user.role !== "PROFESSIONAL")
-    return { error: "Profissional não encontrado." };
+  try {
+    const user = await prisma.user.findUnique({ where: { id } });
+    if (!user || user.role !== "PROFESSIONAL")
+      return { error: "Profissional não encontrado." };
 
-  await prisma.user.delete({ where: { id } });
+    await prisma.user.delete({ where: { id } });
+  } catch {
+    return {
+      error:
+        "Não foi possível excluir. O profissional pode ter consultas ou registros vinculados.",
+    };
+  }
 
   revalidatePath("/profissionais");
   return { success: true };
