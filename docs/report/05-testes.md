@@ -37,7 +37,7 @@ npm test
    Duration  155ms
 ```
 
-## Testes E2E (Playwright) — 14 testes
+## Testes E2E (Playwright) — 20 testes
 
 ### Configuração
 
@@ -64,7 +64,13 @@ npm test
 | `rbac.spec.ts`               | CT011 | Usuário não logado é redirecionado para /login                             | Anônimo      |
 | `lgpd.spec.ts`               | CT012 | Banner LGPD aparece e desaparece após aceitar                              | Anônimo      |
 | `relatorios.spec.ts`         | CT013 | Admin acessa página de relatórios com métricas                             | Admin        |
-| `telemedicina.spec.ts`       | CT014 | Paciente acessa telemedicina e vê seletor de consulta                      | Paciente     |
+| `telemedicina.spec.ts`        | CT014 | Paciente acessa telemedicina e vê seletor de consulta                      | Paciente     |
+| `prontuario-registro.spec.ts` | CT015 | Profissional adiciona registro clínico ao prontuário                       | Profissional |
+| `receita-emissao.spec.ts`     | CT016 | Profissional emite receita digital para paciente                           | Profissional |
+| `receita-paciente.spec.ts`    | CT017 | Paciente visualiza suas receitas prescritas                                | Paciente     |
+| `profissional-crud.spec.ts`   | CT018 | Admin cadastra novo profissional de saúde                                  | Admin        |
+| `paciente-edicao.spec.ts`     | CT019 | Admin edita dados de um paciente existente                                 | Admin        |
+| `consulta-conclusao.spec.ts`  | CT020 | Profissional conclui uma consulta agendada                                 | Profissional |
 
 ### Execução
 
@@ -92,10 +98,16 @@ npm run test:e2e   # Terminal 2: executar testes
   ✓  lgpd.spec.ts › banner LGPD aparece na primeira visita e desaparece após aceitar
   ✓  relatorios.spec.ts › admin acessa página de relatórios com métricas
   ✓  telemedicina.spec.ts › paciente acessa telemedicina e vê seletor de consulta
+  ✓  prontuario-registro.spec.ts › profissional adiciona registro clínico
+  ✓  receita-emissao.spec.ts › profissional emite receita digital
+  ✓  receita-paciente.spec.ts › paciente visualiza suas receitas prescritas
+  ✓  profissional-crud.spec.ts › admin cadastra novo profissional
+  ✓  paciente-edicao.spec.ts › admin edita dados de um paciente existente
+  ✓  consulta-conclusao.spec.ts › profissional conclui uma consulta agendada
 
 ✓ Banco restaurado com seed (pós-testes)
 
-  14 passed (10.4s)
+  20 passed
 ```
 
 ## Cobertura por requisito
@@ -104,9 +116,11 @@ npm run test:e2e   # Terminal 2: executar testes
 | ----------------------------- | ------------------------ |
 | RF001 — Cadastro de pacientes | CT006                    |
 | RF002 — Agendamentos          | CT007                    |
-| RF003 — Prontuário            | CT004 (links visíveis)   |
+| RF003 — Prontuário            | CT004, CT015             |
 | RF004 — Teleconsulta          | CT014                    |
 | RF005 — RBAC                  | CT001–CT005, CT008–CT011 |
-| RF006 — Receitas              | CT004 (links visíveis)   |
+| RF006 — Receitas              | CT004, CT016, CT017      |
+| RF007 — Profissionais (CRUD)  | CT018                    |
+| RF011 — Edição de pacientes   | CT019                    |
 | RNF002 — LGPD                 | CT012                    |
 | RNF006 — Validação Zod        | 32 testes unitários      |

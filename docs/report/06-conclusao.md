@@ -6,7 +6,7 @@ O **VidaPlus** cumpre o objetivo de demonstrar um MVP funcional do Sistema de Ge
 
 A aplicação oferece fluxos completos para os três perfis de usuário — administrador, paciente e profissional de saúde — incluindo cadastro, agendamento, prontuário eletrônico, receitas digitais e **teleconsulta real via Jitsi Meet**.
 
-A cobertura de testes totaliza **32 testes unitários** (Vitest) e **14 testes E2E** (Playwright), validando schemas de dados, fluxos críticos, controle de acesso e conformidade LGPD.
+A cobertura de testes totaliza **32 testes unitários** (Vitest) e **20 testes E2E** (Playwright), validando schemas de dados, fluxos críticos, controle de acesso, CRUD de profissionais, edição de pacientes, emissão e visualização de receitas, prontuário e conformidade LGPD.
 
 ## Lições aprendidas
 
