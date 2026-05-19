@@ -39,7 +39,7 @@ export function ConfirmDialog({
 
   return (
     <>
-      <span onClick={() => setOpen(true)}>{trigger}</span>
+      <div role="presentation" className="inline-flex" onClick={() => setOpen(true)}>{trigger}</div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
