@@ -55,7 +55,7 @@ const links: {
     href: "/receitas",
     label: "Receitas",
     icon: FileText,
-    roles: ["PROFESSIONAL"],
+    roles: ["PROFESSIONAL", "PATIENT"],
   },
   {
     href: "/telemedicina",

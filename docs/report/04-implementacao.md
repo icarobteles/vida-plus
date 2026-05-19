@@ -2,7 +2,7 @@
 
 ## Repositório
 
-**GitHub:** `https://github.com/icarobteles/vida-plus` _(substituir após push)_
+**GitHub:** <https://github.com/icarobteles/vida-plus>
 
 ## Deploy
 
@@ -61,9 +61,10 @@ Painel personalizado por perfil:
 - **Paciente:** visualiza seu histórico (somente leitura)
 - Página de detalhe por paciente (`/prontuario/[id]`)
 
-### 4.7 Receitas digitais (`/receitas`) — Profissional
+### 4.7 Receitas digitais (`/receitas`)
 
-- Selecionar paciente → medicamento, posologia e instruções
+- **Profissional:** selecionar paciente → medicamento, posologia e instruções
+- **Paciente:** visualiza receitas emitidas para si (somente leitura)
 - Histórico de receitas emitidas por paciente
 
 ### 4.8 Teleconsulta (`/telemedicina`)
@@ -72,7 +73,6 @@ Painel personalizado por perfil:
 - Sala de vídeo criada automaticamente a partir do ID do agendamento
 - Nome da sala legível: `VidaPlusTeleconsulta{hash}`
 - Título da sala: `Teleconsulta — Paciente X`
-- Fallback com mock de vídeo para ambiente sem Jitsi disponível
 - Saída limpa: listener `videoConferenceLeft` encerra o componente imediatamente
 
 ### 4.9 Relatórios (`/relatorios`) — Admin
@@ -121,5 +121,6 @@ O projeto foi desenvolvido em **6 entregas incrementais**, cada uma em branch de
 | 4   | `feat/admin-gestao`           | CRUD profissionais, edição de pacientes, relatórios    |
 | 5   | `feat/notificacoes-lgpd-a11y` | Notificações, LGPD, acessibilidade, loading states     |
 | 6   | `test/cobertura-completa`     | Testes unitários e E2E expandidos, seed setup/teardown |
+| 7   | `feat/melhorias-finais`       | Receitas para pacientes, cobertura E2E expandida, docs |
 
 Cada entrega seguiu **Conventional Commits** em português com commits atômicos.

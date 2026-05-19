@@ -36,7 +36,7 @@
 | `/pacientes`     |  ✅   |      ❌      |    ❌    |
 | `/profissionais` |  ✅   |      ❌      |    ❌    |
 | `/agendamentos`  |  ✅   |      ✅      |    ✅    |
-| `/prontuario`    |  ❌   |      ✅      |    ✅    |
-| `/receitas`      |  ❌   |      ✅      |    ❌    |
+| `/prontuario`    |  ✅   |      ✅      |    ✅    |
+| `/receitas`      |  ❌   |      ✅      |    ✅    |
 | `/telemedicina`  |  ❌   |      ✅      |    ✅    |
 | `/relatorios`    |  ✅   |      ❌      |    ❌    |

@@ -16,6 +16,7 @@ Sistema de Gestão Hospitalar e de Serviços de Saúde (projeto acadêmico Unint
 ```bash
 cp .env.example .env
 npm install
+npx prisma generate
 npx prisma db push
 npm run db:seed
 npm run dev
@@ -35,7 +36,7 @@ Acesse [http://localhost:3000](http://localhost:3000).
 
 ```bash
 npm test          # Vitest (32 testes unitários)
-npm run test:e2e  # Playwright (14 testes E2E)
+npm run test:e2e  # Playwright (20 testes E2E)
 ```
 
 ## Deploy (Vercel)
