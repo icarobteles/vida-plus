@@ -1,13 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function LoginForm() {
   const router = useRouter();
@@ -75,7 +81,8 @@ export function LoginForm() {
           </Button>
         </form>
         <p className="mt-4 text-xs text-muted-foreground">
-          Demo: admin@vida.plus · medico@vida.plus · paciente@vida.plus (senha: 123456)
+          Demo: admin@vida.plus · medico@vida.plus · paciente@vida.plus (senha:
+          123456)
         </p>
       </CardContent>
     </Card>

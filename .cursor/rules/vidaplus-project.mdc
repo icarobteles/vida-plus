@@ -1,29 +1,30 @@
 ---
-description: Contexto e stack do MedFlow (SGHSS VidaPlus)
+description: Contexto e stack do VidaPlus (SGHSS)
 alwaysApply: true
 ---
 
-# MedFlow — SGHSS VidaPlus
+# VidaPlus — SGHSS
 
-- Projeto acadêmico Uninter: Sistema de Gestão Hospitalar, instituição **VidaPlus**.
+- Projeto acadêmico Uninter: Sistema de Gestão Hospitalar e de Serviços de Saúde.
 - Ênfase **front-end**; backend mínimo via Next.js Route Handlers + Prisma SQLite.
 - Documentar e responder em **português**.
 
 ## Stack fixa
 
-- Next.js 15 App Router, TypeScript, Tailwind, shadcn/ui
+- Next.js 16 App Router, TypeScript, Tailwind, shadcn/ui
 - Auth.js v5 (Credentials) — sem OAuth no MVP
 - Prisma + SQLite, Zod, React Hook Form
+- Jitsi Meet (teleconsulta)
 - Vitest (unit) + Playwright (e2e)
 - Deploy: Vercel + GitHub público
 
 ## Fora de escopo
 
-NestJS separado, OAuth/Better Auth, Zoom real, microserviços.
+NestJS separado, OAuth/Better Auth, microserviços.
 
 ## UI
 
-- Identidade: **MedFlow**, tom saúde (emerald/slate), responsivo.
+- Identidade: **VidaPlus**, tom saúde (emerald/slate), responsivo.
 - LGPD: avisos em login e telas com dados sensíveis.
 - Perfis: `admin`, `patient`, `professional`.
 

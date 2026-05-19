@@ -84,7 +84,10 @@ export function AppSidebar({ role }: { role: Role }) {
           <p className="text-xs text-muted-foreground">VidaPlus SGHSS</p>
         </div>
       </div>
-      <nav aria-label="Menu principal" className="flex flex-1 flex-col gap-1 p-4">
+      <nav
+        aria-label="Menu principal"
+        className="flex flex-1 flex-col gap-1 p-4"
+      >
         {visible.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}

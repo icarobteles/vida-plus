@@ -25,11 +25,11 @@ Acesse [http://localhost:3000](http://localhost:3000).
 
 ## Credenciais demo
 
-| Perfil       | E-mail               | Senha  |
-|-------------|----------------------|--------|
-| Admin       | admin@vida.plus      | 123456 |
-| Profissional| medico@vida.plus     | 123456 |
-| Paciente    | paciente@vida.plus   | 123456 |
+| Perfil       | E-mail             | Senha  |
+| ------------ | ------------------ | ------ |
+| Admin        | admin@vida.plus    | 123456 |
+| Profissional | medico@vida.plus   | 123456 |
+| Paciente     | paciente@vida.plus | 123456 |
 
 ## Testes
 

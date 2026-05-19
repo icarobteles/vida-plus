@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Calendar, FileText, Users, Video } from "lucide-react";
-import { requireSession } from "@/lib/session";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { requireSession } from "@/lib/session";
+import { Calendar, FileText, Users, Video } from "lucide-react";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const user = await requireSession();
@@ -35,19 +35,59 @@ export default async function DashboardPage() {
 
   const cards = {
     ADMIN: [
-      { title: "Pacientes", value: patientsCount, href: "/pacientes", icon: Users },
-      { title: "Consultas agendadas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
-      { title: "Registros clínicos", value: recordsCount, href: "/prontuario", icon: FileText },
+      {
+        title: "Pacientes",
+        value: patientsCount,
+        href: "/pacientes",
+        icon: Users,
+      },
+      {
+        title: "Consultas agendadas",
+        value: appointmentsCount,
+        href: "/agendamentos",
+        icon: Calendar,
+      },
+      {
+        title: "Registros clínicos",
+        value: recordsCount,
+        href: "/prontuario",
+        icon: FileText,
+      },
     ],
     PATIENT: [
-      { title: "Minhas consultas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
-      { title: "Meu prontuário", value: recordsCount, href: "/prontuario", icon: FileText },
+      {
+        title: "Minhas consultas",
+        value: appointmentsCount,
+        href: "/agendamentos",
+        icon: Calendar,
+      },
+      {
+        title: "Meu prontuário",
+        value: recordsCount,
+        href: "/prontuario",
+        icon: FileText,
+      },
       { title: "Telemedicina", value: "—", href: "/telemedicina", icon: Video },
     ],
     PROFESSIONAL: [
-      { title: "Minhas consultas", value: appointmentsCount, href: "/agendamentos", icon: Calendar },
-      { title: "Prontuários", value: recordsCount, href: "/prontuario", icon: FileText },
-      { title: "Receitas emitidas", value: prescriptionsCount, href: "/receitas", icon: FileText },
+      {
+        title: "Minhas consultas",
+        value: appointmentsCount,
+        href: "/agendamentos",
+        icon: Calendar,
+      },
+      {
+        title: "Prontuários",
+        value: recordsCount,
+        href: "/prontuario",
+        icon: FileText,
+      },
+      {
+        title: "Receitas emitidas",
+        value: prescriptionsCount,
+        href: "/receitas",
+        icon: FileText,
+      },
       { title: "Telemedicina", value: "—", href: "/telemedicina", icon: Video },
     ],
   };
