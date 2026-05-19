@@ -10,7 +10,7 @@ const roleRoutes: Record<string, Role[]> = {
   "/profissionais": ["ADMIN"],
   "/relatorios": ["ADMIN"],
   "/agendamentos": ["PATIENT", "ADMIN", "PROFESSIONAL"],
-  "/receitas": ["PROFESSIONAL"],
+  "/receitas": ["PROFESSIONAL", "PATIENT"],
   "/telemedicina": ["PATIENT", "PROFESSIONAL"],
 };
 

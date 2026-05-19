@@ -1,11 +1,11 @@
-import "dotenv/config";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import bcrypt from "bcryptjs";
+import "dotenv/config";
 import {
+  AppointmentStatus,
   PrismaClient,
   Role,
-  AppointmentStatus,
 } from "../app/generated/prisma/client";
-import bcrypt from "bcryptjs";
 
 const adapter = new PrismaBetterSqlite3({
   url: process.env.DATABASE_URL ?? "file:./dev.db",
@@ -15,6 +15,7 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   const passwordHash = await bcrypt.hash("123456", 10);
 
+  await prisma.prescription.deleteMany();
   await prisma.medicalRecord.deleteMany();
   await prisma.appointment.deleteMany();
   await prisma.patient.deleteMany();
@@ -101,7 +102,8 @@ async function main() {
         patientId: patient.id,
         professionalId: professional.id,
         type: "Consulta",
-        description: "Paciente relatou dor de cabeça leve. Pressão arterial normal.",
+        description:
+          "Paciente relatou dor de cabeça leve. Pressão arterial normal.",
         recordedAt: new Date("2025-01-10"),
       },
       {
@@ -114,7 +116,30 @@ async function main() {
     ],
   });
 
-  console.log("Seed OK:", { admin: admin.email, professional: professional.email });
+  await prisma.prescription.createMany({
+    data: [
+      {
+        patientId: patient.id,
+        professionalId: professional.id,
+        medication: "Amoxicilina 500mg",
+        dosage: "1 comprimido a cada 8 horas",
+        instructions: "Tomar por 7 dias. Ingerir com água após as refeições.",
+      },
+      {
+        patientId: patient.id,
+        professionalId: professional.id,
+        medication: "Ibuprofeno 400mg",
+        dosage: "1 comprimido a cada 12 horas",
+        instructions:
+          "Tomar por 5 dias se houver dor. Não ultrapassar 2 comprimidos por dia.",
+      },
+    ],
+  });
+
+  console.log("Seed OK:", {
+    admin: admin.email,
+    professional: professional.email,
+  });
 }
 
 main()

@@ -1,8 +1,12 @@
-import { requireRole } from "@/lib/session";
-import { prisma } from "@/lib/prisma";
 import { PrescriptionFormDialog } from "@/components/prescription-form";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -11,19 +15,27 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { prisma } from "@/lib/prisma";
+import { requireRole } from "@/lib/session";
 
 export default async function ReceitasPage() {
-  const user = await requireRole(["PROFESSIONAL"]);
+  const user = await requireRole(["PROFESSIONAL", "PATIENT"]);
+  const isProfessional = user.role === "PROFESSIONAL";
 
-  const patients = await prisma.patient.findMany({
-    select: { id: true, name: true },
-    orderBy: { name: "asc" },
-  });
+  const patients = isProfessional
+    ? await prisma.patient.findMany({
+        select: { id: true, name: true },
+        orderBy: { name: "asc" },
+      })
+    : [];
 
   const prescriptions = await prisma.prescription.findMany({
-    where: { professionalId: user.id },
+    where: isProfessional
+      ? { professionalId: user.id }
+      : { patientId: user.patientId ?? undefined },
     include: {
       patient: { select: { name: true } },
+      professional: { select: { name: true } },
     },
     orderBy: { createdAt: "desc" },
   });
@@ -34,32 +46,46 @@ export default async function ReceitasPage() {
         <div>
           <h1 className="text-2xl font-bold">Receitas Digitais</h1>
           <p className="text-muted-foreground">
-            Emita receitas para seus pacientes
+            {isProfessional
+              ? "Emita receitas para seus pacientes"
+              : "Receitas prescritas para você"}
           </p>
         </div>
-        <PrescriptionFormDialog patients={patients} />
+        {isProfessional && <PrescriptionFormDialog patients={patients} />}
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Receitas emitidas</CardTitle>
+          <CardTitle>
+            {isProfessional ? "Receitas emitidas" : "Minhas receitas"}
+          </CardTitle>
           <CardDescription>{prescriptions.length} registro(s)</CardDescription>
         </CardHeader>
         <CardContent className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Paciente</TableHead>
+                {isProfessional ? (
+                  <TableHead>Paciente</TableHead>
+                ) : (
+                  <TableHead>Profissional</TableHead>
+                )}
                 <TableHead>Medicamento</TableHead>
                 <TableHead>Posologia</TableHead>
+                <TableHead>Instruções</TableHead>
                 <TableHead>Data</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {prescriptions.map((p) => (
                 <TableRow key={p.id}>
-                  <TableCell className="font-medium">{p.patient.name}</TableCell>
+                  <TableCell className="font-medium">
+                    {isProfessional ? p.patient.name : p.professional.name}
+                  </TableCell>
                   <TableCell>{p.medication}</TableCell>
                   <TableCell>{p.dosage}</TableCell>
+                  <TableCell className="max-w-[200px] truncate">
+                    {p.instructions}
+                  </TableCell>
                   <TableCell>
                     <Badge variant="outline">
                       {new Date(p.createdAt).toLocaleDateString("pt-BR")}
@@ -69,8 +95,13 @@ export default async function ReceitasPage() {
               ))}
               {prescriptions.length === 0 && (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-muted-foreground">
-                    Nenhuma receita emitida ainda.
+                  <TableCell
+                    colSpan={5}
+                    className="text-center text-muted-foreground"
+                  >
+                    {isProfessional
+                      ? "Nenhuma receita emitida ainda."
+                      : "Nenhuma receita prescrita para você."}
                   </TableCell>
                 </TableRow>
               )}

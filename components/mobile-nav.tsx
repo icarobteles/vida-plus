@@ -35,7 +35,11 @@ const links = [
     label: "Prontuário",
     roles: ["PATIENT", "PROFESSIONAL", "ADMIN"] as Role[],
   },
-  { href: "/receitas", label: "Receitas", roles: ["PROFESSIONAL"] as Role[] },
+  {
+    href: "/receitas",
+    label: "Receitas",
+    roles: ["PROFESSIONAL", "PATIENT"] as Role[],
+  },
   {
     href: "/telemedicina",
     label: "Telemedicina",
