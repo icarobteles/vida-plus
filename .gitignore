@@ -48,3 +48,8 @@ dev.db
 dev.db-journal
 
 /app/generated/prisma
+
+# docs de orientação (PDFs do roteiro Uninter)
+docs/orientations-projeto-medflow.pdf
+docs/faq-projeto-medflow.pdf
+docs/roteiro-projeto-medflow.pdf
