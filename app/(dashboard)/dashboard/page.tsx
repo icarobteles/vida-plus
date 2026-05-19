@@ -59,7 +59,7 @@ export default async function DashboardPage() {
       <div>
         <h1 className="text-2xl font-bold">Olá, {user.name.split(" ")[0]}</h1>
         <p className="text-muted-foreground">
-          Bem-vindo ao painel MedFlow da rede VidaPlus.
+          Bem-vindo ao painel do sistema VidaPlus.
         </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

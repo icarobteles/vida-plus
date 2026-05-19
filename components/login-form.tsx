@@ -36,7 +36,7 @@ export function LoginForm() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Entrar no MedFlow</CardTitle>
+        <CardTitle>Entrar no VidaPlus</CardTitle>
         <CardDescription>
           SGHSS VidaPlus — use as credenciais de demonstração
         </CardDescription>

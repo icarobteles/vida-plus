@@ -2,7 +2,7 @@
 
 ## Resultados alcançados
 
-O **MedFlow** cumpre o objetivo de demonstrar um MVP funcional do Sistema de Gestão Hospitalar e de Serviços de Saúde (SGHSS) para a instituição fictícia VidaPlus. Todos os **11 requisitos funcionais** e **7 requisitos não funcionais** identificados foram implementados com sucesso.
+O **VidaPlus** cumpre o objetivo de demonstrar um MVP funcional do Sistema de Gestão Hospitalar e de Serviços de Saúde (SGHSS). Todos os **11 requisitos funcionais** e **7 requisitos não funcionais** identificados foram implementados com sucesso.
 
 A aplicação oferece fluxos completos para os três perfis de usuário — administrador, paciente e profissional de saúde — incluindo cadastro, agendamento, prontuário eletrônico, receitas digitais e **teleconsulta real via Jitsi Meet**.
 
@@ -20,16 +20,16 @@ A cobertura de testes totaliza **32 testes unitários** (Vitest) e **14 testes E
 
 ## Evoluções futuras
 
-| Evolução | Justificativa |
-|----------|---------------|
-| Banco PostgreSQL (Neon/Turso) | Persistência confiável para produção |
-| OAuth (Google/GitHub) | Login social para conveniência do usuário |
-| Auditoria LGPD completa | Registro de consentimento, exportação e exclusão de dados |
-| Jitsi self-hosted ou Daily.co | Eliminar limitação de autenticação do servidor público |
-| Upload de exames (S3/R2) | Anexar PDFs e imagens aos prontuários |
-| Notificações por e-mail | Lembrete de consultas via SMTP |
-| NestJS separado | Backend dedicado caso a aplicação escale para microserviços |
-| CI/CD com GitHub Actions | Build, lint, testes automatizados em cada PR |
+| Evolução                      | Justificativa                                               |
+| ----------------------------- | ----------------------------------------------------------- |
+| Banco PostgreSQL (Neon/Turso) | Persistência confiável para produção                        |
+| OAuth (Google/GitHub)         | Login social para conveniência do usuário                   |
+| Auditoria LGPD completa       | Registro de consentimento, exportação e exclusão de dados   |
+| Jitsi self-hosted ou Daily.co | Eliminar limitação de autenticação do servidor público      |
+| Upload de exames (S3/R2)      | Anexar PDFs e imagens aos prontuários                       |
+| Notificações por e-mail       | Lembrete de consultas via SMTP                              |
+| NestJS separado               | Backend dedicado caso a aplicação escale para microserviços |
+| CI/CD com GitHub Actions      | Build, lint, testes automatizados em cada PR                |
 
 ## Referências
 

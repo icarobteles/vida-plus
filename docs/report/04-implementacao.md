@@ -2,19 +2,19 @@
 
 ## Repositório
 
-**GitHub:** `https://github.com/SEU_USUARIO/medflow` *(substituir após push)*
+**GitHub:** `https://github.com/icarobteles/vida-plus` _(substituir após push)_
 
 ## Deploy
 
-**Vercel:** `https://medflow-xxx.vercel.app` *(substituir após deploy)*
+**Vercel:** `https://vida-plus-xxx.vercel.app` _(substituir após deploy)_
 
 ## Credenciais de demonstração
 
-| Perfil | E-mail | Senha |
-|--------|--------|-------|
-| Administrador | admin@vida.plus | 123456 |
-| Paciente | paciente@vida.plus | 123456 |
-| Profissional | medico@vida.plus | 123456 |
+| Perfil        | E-mail             | Senha  |
+| ------------- | ------------------ | ------ |
+| Administrador | admin@vida.plus    | 123456 |
+| Paciente      | paciente@vida.plus | 123456 |
+| Profissional  | medico@vida.plus   | 123456 |
 
 ## Módulos implementados
 
@@ -28,6 +28,7 @@
 ### 4.2 Dashboard (`/dashboard`)
 
 Painel personalizado por perfil:
+
 - **Admin:** total de pacientes, profissionais, consultas agendadas e concluídas
 - **Profissional:** consultas do dia, total de prontuários registrados
 - **Paciente:** próximas consultas, total de registros no prontuário
@@ -112,13 +113,13 @@ Painel personalizado por perfil:
 
 O projeto foi desenvolvido em **6 entregas incrementais**, cada uma em branch dedicada:
 
-| # | Branch | Escopo |
-|---|--------|--------|
-| 1 | `fix/rbac-e-correcoes` | Correção de RBAC, métricas no dashboard, ThemeProvider |
-| 2 | `feat/profissional-completo` | Agenda, prontuário e receitas para profissional |
-| 3 | `feat/telemedicina-jitsi` | Teleconsulta real com Jitsi Meet |
-| 4 | `feat/admin-gestao` | CRUD profissionais, edição de pacientes, relatórios |
-| 5 | `feat/notificacoes-lgpd-a11y` | Notificações, LGPD, acessibilidade, loading states |
-| 6 | `test/cobertura-completa` | Testes unitários e E2E expandidos, seed setup/teardown |
+| #   | Branch                        | Escopo                                                 |
+| --- | ----------------------------- | ------------------------------------------------------ |
+| 1   | `fix/rbac-e-correcoes`        | Correção de RBAC, métricas no dashboard, ThemeProvider |
+| 2   | `feat/profissional-completo`  | Agenda, prontuário e receitas para profissional        |
+| 3   | `feat/telemedicina-jitsi`     | Teleconsulta real com Jitsi Meet                       |
+| 4   | `feat/admin-gestao`           | CRUD profissionais, edição de pacientes, relatórios    |
+| 5   | `feat/notificacoes-lgpd-a11y` | Notificações, LGPD, acessibilidade, loading states     |
+| 6   | `test/cobertura-completa`     | Testes unitários e E2E expandidos, seed setup/teardown |
 
 Cada entrega seguiu **Conventional Commits** em português com commits atômicos.

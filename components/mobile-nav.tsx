@@ -58,7 +58,7 @@ export function MobileNav({ role }: { role: Role }) {
       </SheetTrigger>
       <SheetContent side="left" className="w-64">
         <SheetHeader>
-          <SheetTitle>MedFlow</SheetTitle>
+          <SheetTitle>VidaPlus</SheetTitle>
         </SheetHeader>
         <nav className="mt-6 flex flex-col gap-2">
           {visible.map(({ href, label }) => (

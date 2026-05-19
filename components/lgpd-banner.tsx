@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield } from "lucide-react";
 
-const LGPD_KEY = "medflow-lgpd-consent";
+const LGPD_KEY = "vidaplus-lgpd-consent";
 
 export function LgpdBanner() {
   const [visible, setVisible] = useState(false);

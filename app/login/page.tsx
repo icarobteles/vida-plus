@@ -7,7 +7,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-emerald-50 to-slate-100 p-4 dark:from-slate-950 dark:to-slate-900">
       <div className="mb-8 flex flex-col items-center gap-2 text-center">
         <Activity className="h-12 w-12 text-primary" />
-        <h1 className="text-2xl font-bold">MedFlow</h1>
+        <h1 className="text-2xl font-bold">VidaPlus</h1>
         <p className="text-sm text-muted-foreground">
           Sistema de Gestão Hospitalar — VidaPlus
         </p>

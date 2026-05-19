@@ -2,19 +2,19 @@
 
 ## Stack tecnológica
 
-| Camada | Tecnologia | Versão |
-|--------|-----------|--------|
-| Framework | Next.js (App Router, Turbopack) | 16.2 |
-| UI | React + TypeScript | 19 |
-| Estilização | Tailwind CSS | 4.x |
-| Componentes | shadcn/ui + @base-ui/react | — |
-| Autenticação | Auth.js (NextAuth v5, Credentials) | 5.x |
-| ORM | Prisma (adapter better-sqlite3) | 6.x |
-| Banco de dados | SQLite | — |
-| Validação | Zod + React Hook Form | — |
-| Videoconferência | Jitsi Meet (@jitsi/react-sdk) | — |
-| Testes unitários | Vitest | — |
-| Testes E2E | Playwright | — |
+| Camada           | Tecnologia                         | Versão |
+| ---------------- | ---------------------------------- | ------ |
+| Framework        | Next.js (App Router, Turbopack)    | 16.2   |
+| UI               | React + TypeScript                 | 19     |
+| Estilização      | Tailwind CSS                       | 4.x    |
+| Componentes      | shadcn/ui + @base-ui/react         | —      |
+| Autenticação     | Auth.js (NextAuth v5, Credentials) | 5.x    |
+| ORM              | Prisma (adapter better-sqlite3)    | 6.x    |
+| Banco de dados   | SQLite                             | —      |
+| Validação        | Zod + React Hook Form              | —      |
+| Videoconferência | Jitsi Meet (@jitsi/react-sdk)      | —      |
+| Testes unitários | Vitest                             | —      |
+| Testes E2E       | Playwright                         | —      |
 
 ## Diagrama de arquitetura
 
@@ -80,21 +80,21 @@
 
 ## Casos de uso
 
-| ID | Caso de uso | Ator(es) | Fluxo principal |
-|----|-------------|----------|-----------------|
-| UC01 | Login por perfil | Todos | Informar e-mail/senha → Auth.js valida → Redireciona ao dashboard por role |
-| UC02 | Cadastrar paciente | Admin | Acessar `/pacientes` → "Novo paciente" → Preencher formulário com CPF → Validação Zod → Server Action cria no banco |
-| UC03 | Agendar consulta | Paciente | Acessar `/agendamentos` → "Agendar consulta" → Selecionar profissional e data → Confirmação |
-| UC04 | Registrar prontuário | Profissional | Acessar `/prontuario` → Selecionar paciente → "Novo registro" → Tipo + descrição → Salvar |
-| UC05 | Emitir receita | Profissional | Acessar `/receitas` → Selecionar paciente → Medicamento, posologia, instruções → Salvar |
-| UC06 | Teleconsulta | Paciente/Profissional | Acessar `/telemedicina` → Selecionar consulta agendada → Sala Jitsi Meet é aberta |
-| UC07 | Gerenciar profissionais | Admin | Acessar `/profissionais` → CRUD completo (criar, editar, excluir) |
-| UC08 | Visualizar relatórios | Admin | Acessar `/relatorios` → Métricas agregadas (total pacientes, consultas, status) |
+| ID   | Caso de uso             | Ator(es)              | Fluxo principal                                                                                                     |
+| ---- | ----------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| UC01 | Login por perfil        | Todos                 | Informar e-mail/senha → Auth.js valida → Redireciona ao dashboard por role                                          |
+| UC02 | Cadastrar paciente      | Admin                 | Acessar `/pacientes` → "Novo paciente" → Preencher formulário com CPF → Validação Zod → Server Action cria no banco |
+| UC03 | Agendar consulta        | Paciente              | Acessar `/agendamentos` → "Agendar consulta" → Selecionar profissional e data → Confirmação                         |
+| UC04 | Registrar prontuário    | Profissional          | Acessar `/prontuario` → Selecionar paciente → "Novo registro" → Tipo + descrição → Salvar                           |
+| UC05 | Emitir receita          | Profissional          | Acessar `/receitas` → Selecionar paciente → Medicamento, posologia, instruções → Salvar                             |
+| UC06 | Teleconsulta            | Paciente/Profissional | Acessar `/telemedicina` → Selecionar consulta agendada → Sala Jitsi Meet é aberta                                   |
+| UC07 | Gerenciar profissionais | Admin                 | Acessar `/profissionais` → CRUD completo (criar, editar, excluir)                                                   |
+| UC08 | Visualizar relatórios   | Admin                 | Acessar `/relatorios` → Métricas agregadas (total pacientes, consultas, status)                                     |
 
 ## Estrutura de pastas
 
 ```
-medflow/
+vida-plus/
 ├── app/
 │   ├── (dashboard)/          # Layout autenticado
 │   │   ├── agendamentos/     # Consultas e agendamentos

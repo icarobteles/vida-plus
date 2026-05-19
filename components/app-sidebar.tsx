@@ -80,7 +80,7 @@ export function AppSidebar({ role }: { role: Role }) {
       <div className="flex h-16 items-center gap-2 border-b px-6">
         <Activity className="h-7 w-7 text-primary" />
         <div>
-          <p className="font-semibold leading-tight">MedFlow</p>
+          <p className="font-semibold leading-tight">VidaPlus</p>
           <p className="text-xs text-muted-foreground">VidaPlus SGHSS</p>
         </div>
       </div>
