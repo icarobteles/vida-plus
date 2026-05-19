@@ -1,25 +1,33 @@
-# Projeto Multidisciplinar — SGHSS
+<div class="cover-page">
+
+<div class="cover-top">
+
+CENTRO UNIVERSITÁRIO INTERNACIONAL UNINTER
+
+TECNOLOGIA EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
+
+</div>
+
+<div class="cover-middle">
+
+ÍCARO BOMFIM TELES
+
+# PROJETO MULTIDISCIPLINAR — SGHSS
 
 ## VidaPlus: Sistema de Gestão Hospitalar e de Serviços de Saúde
 
-**Curso:** Tecnologia em Análise e Desenvolvimento de Sistemas
+**Ênfase: Desenvolvimento Front-end**
 
-**Ênfase:** Desenvolvimento Front-end
+</div>
 
----
+<div class="cover-bottom">
 
-**Aluno:** Ícaro Bomfim Teles
+Professor orientador: Winston Sen Lun Fung
 
-**RU:** 4583884
+Feira de Santana/Bahia — Polo Uninter
 
-**Polo:** Feira de Santana/Bahia
+2026/1
 
-**Professor orientador:** Winston Sen Lun Fung
+</div>
 
-**Semestre:** 2026/1
-
----
-
-**Centro Universitário Internacional Uninter**
-
-2026
+</div>

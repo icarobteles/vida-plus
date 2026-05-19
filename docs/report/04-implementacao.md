@@ -6,7 +6,7 @@
 
 ## Deploy
 
-**Vercel:** `https://vida-plus-xxx.vercel.app` _(substituir após deploy)_
+**Vercel:** <https://vida-plus-seven.vercel.app>
 
 ## Credenciais de demonstração
 
@@ -125,3 +125,201 @@ O projeto foi desenvolvido em **6 entregas incrementais**, cada uma em branch de
 | 8   | `fix/seguranca-e-responsividade` | Correção IDOR, try/catch, responsividade mobile, aria-labels |
 
 Cada entrega seguiu **Conventional Commits** em português com commits atômicos.
+
+## Screenshots das telas
+
+As capturas a seguir cobrem **todas as telas do sistema** nos três perfis de usuário, em versão **desktop** e **mobile**, demonstrando a responsividade da aplicação.
+
+### Autenticação
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Login desktop](../screenshots/desktop/00-login.png) | ![Login mobile](../screenshots/mobile/00-login.png) |
+
+*Tela de login com credenciais de demonstração e aviso LGPD.*
+
+### Visão do Paciente
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Dashboard](../screenshots/desktop/01-paciente-dashboard.png) | ![Dashboard](../screenshots/mobile/01-paciente-dashboard.png) |
+
+*Dashboard do paciente com métricas pessoais.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Agendamentos](../screenshots/desktop/02-paciente-agendamentos.png) | ![Agendamentos](../screenshots/mobile/02-paciente-agendamentos.png) |
+
+*Lista de consultas agendadas do paciente.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Criar agendamento](../screenshots/desktop/03-paciente-criar-agendamento.png) | ![Criar agendamento](../screenshots/mobile/03-paciente-criar-agendamento.png) |
+
+*Formulário de agendamento de nova consulta.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Histórico clínico](../screenshots/desktop/04-paciente-historico-clinico.png) | ![Histórico clínico](../screenshots/mobile/04-paciente-historico-clinico.png) |
+
+*Histórico clínico do paciente com registros e aviso LGPD.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Receitas](../screenshots/desktop/05-paciente-receitas.png) | ![Receitas](../screenshots/mobile/05-paciente-receitas.png) |
+
+*Receitas prescritas para o paciente (somente leitura).*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Telemedicina](../screenshots/desktop/06-paciente-telemedicina.png) | ![Telemedicina](../screenshots/mobile/06-paciente-telemedicina.png) |
+
+*Tela de teleconsulta com seleção de consulta agendada.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Telemedicina sala](../screenshots/desktop/07-paciente-telemedicina-aguardando-inicio.png) | ![Telemedicina sala](../screenshots/mobile/07-paciente-telemedicina-aguardando-inicio.png) |
+
+*Sala de videoconsulta Jitsi Meet aguardando início.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Notificações](../screenshots/desktop/08-paciente-notificacoes.png) | ![Notificações](../screenshots/mobile/08-paciente-notificacoes.png) |
+
+*Popover de notificações com consultas nas próximas 48 horas.*
+
+### Visão do Profissional
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Dashboard](../screenshots/desktop/09-medico-dashboard.png) | ![Dashboard](../screenshots/mobile/09-medico-dashboard.png) |
+
+*Dashboard do profissional com suas consultas e prontuários.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Agendamentos](../screenshots/desktop/10-medico-agendamentos.png) | ![Agendamentos](../screenshots/mobile/10-medico-agendamentos.png) |
+
+*Agenda do profissional com ações de concluir e link para teleconsulta.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Prontuários](../screenshots/desktop/11-medico-prontuarios.png) | ![Prontuários](../screenshots/mobile/11-medico-prontuarios.png) |
+
+*Lista de pacientes para acesso ao prontuário.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Prontuário paciente](../screenshots/desktop/12-medico-prontuario-paciente.png) | ![Prontuário paciente](../screenshots/mobile/12-medico-prontuario-paciente.png) |
+
+*Detalhe do prontuário de um paciente específico.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Novo registro](../screenshots/desktop/13-medico-novo-registro-prontuario-paciente.png) | ![Novo registro](../screenshots/mobile/13-medico-novo-registro-prontuario-paciente.png) |
+
+*Formulário para registrar novo evento no prontuário.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Receitas](../screenshots/desktop/14-medico-receitas.png) | ![Receitas](../screenshots/mobile/14-medico-receitas.png) |
+
+*Lista de receitas emitidas pelo profissional.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Criar receita](../screenshots/desktop/15-medico-criar-receita.png) | ![Criar receita](../screenshots/mobile/15-medico-criar-receita.png) |
+
+*Formulário de emissão de receita digital.*
+
+### Visão do Administrador
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Dashboard](../screenshots/desktop/16-admin-dashboard.png) | ![Dashboard](../screenshots/mobile/16-admin-dashboard.png) |
+
+*Dashboard do administrador com métricas gerais do sistema.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Pacientes](../screenshots/desktop/17-admin-pacientes.png) | ![Pacientes](../screenshots/mobile/17-admin-pacientes.png) |
+
+*Listagem de pacientes com ações de editar e excluir.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Editar paciente](../screenshots/desktop/18-admin-editar-paciente.png) | ![Editar paciente](../screenshots/mobile/18-admin-editar-paciente.png) |
+
+*Dialog de edição de dados do paciente.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Deletar paciente](../screenshots/desktop/19-admin-deletar-paciente.png) | ![Deletar paciente](../screenshots/mobile/19-admin-deletar-paciente.png) |
+
+*Confirmação de exclusão de paciente.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Criar paciente](../screenshots/desktop/20-admin-criar-paciente.png) | ![Criar paciente](../screenshots/mobile/20-admin-criar-paciente.png) |
+
+*Formulário de cadastro de novo paciente com validação de CPF.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Profissionais](../screenshots/desktop/21-admin-profissionais.png) | ![Profissionais](../screenshots/mobile/21-admin-profissionais.png) |
+
+*Gestão de profissionais de saúde.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Editar profissional](../screenshots/desktop/22-admin-editar-profissional.png) | ![Editar profissional](../screenshots/mobile/22-admin-editar-profissional.png) |
+
+*Dialog de edição de profissional.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Deletar profissional](../screenshots/desktop/23-admin-deletar-profissional.png) | ![Deletar profissional](../screenshots/mobile/23-admin-deletar-profissional.png) |
+
+*Confirmação de exclusão de profissional.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Criar profissional](../screenshots/desktop/24-admin-criar-profissional.png) | ![Criar profissional](../screenshots/mobile/24-admin-criar-profissional.png) |
+
+*Formulário de cadastro de novo profissional.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Agendamentos](../screenshots/desktop/25-admin-agendamentos.png) | ![Agendamentos](../screenshots/mobile/25-admin-agendamentos.png) |
+
+*Visão completa de todos os agendamentos.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Cancelar agendamento](../screenshots/desktop/26-admin-cancelar-agendamento.png) | ![Cancelar agendamento](../screenshots/mobile/26-admin-cancelar-agendamento.png) |
+
+*Confirmação de cancelamento de consulta.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Criar agendamento](../screenshots/desktop/27-admin-criar-agendamento.png) | ![Criar agendamento](../screenshots/mobile/27-admin-criar-agendamento.png) |
+
+*Formulário de agendamento de consulta.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Prontuários](../screenshots/desktop/28-admin-prontuarios.png) | ![Prontuários](../screenshots/mobile/28-admin-prontuarios.png) |
+
+*Prontuários dos pacientes com cards por paciente.*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Prontuário paciente](../screenshots/desktop/29-admin-prontuario-paciente.png) | ![Prontuário paciente](../screenshots/mobile/29-admin-prontuario-paciente.png) |
+
+*Detalhe do prontuário de um paciente (visão admin).*
+
+| Desktop | Mobile |
+|---------|--------|
+| ![Relatórios](../screenshots/desktop/30-admin-relatorios.png) | ![Relatórios](../screenshots/mobile/30-admin-relatorios.png) |
+
+*Painel de relatórios com métricas agregadas e distribuição por status.*
